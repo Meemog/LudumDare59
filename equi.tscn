@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bhwxia1ra6tkn"]
+
+[ext_resource type="Texture2D" uid="uid://cwu0yu0vs71iq" path="res://English Equibub.png" id="1_nrlb2"]
+
+[node name="Equi" type="Node2D" unique_id=158546601]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=319272354]
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=1270400595]
+texture = ExtResource("1_nrlb2")
