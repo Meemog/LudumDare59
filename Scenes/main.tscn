@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://b45u0odr2ptkv"]
 
 [ext_resource type="PackedScene" uid="uid://bvl36w8yrs2e4" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://vtbmeiagl1st" path="res://Scenes/checkpoint.tscn" id="2_bo1nx"]
 
 [node name="Main" type="Node2D" unique_id=2099088848]
 
 [node name="Player" parent="." unique_id=1356148789 instance=ExtResource("1_jjgbg")]
 position = Vector2(545, 65)
+
+[node name="Checkpoint" parent="." unique_id=1489703755 instance=ExtResource("2_bo1nx")]
+position = Vector2(539, 459)

@@ -13,6 +13,9 @@ var _tps_adjustment: float ## Physics adjustment to ensure forces are calculated
 var _vision_cone: Node2D
 var _y_start: float
 
+# Gameplay
+var _checkpoint_pos: Vector2
+
 func _ready() -> void:
     _vision_cone = $VisionCone
     _y_start = position.y
@@ -65,3 +68,6 @@ func _process_vision() -> void:
     var y_offset = position.y - _y_start
     var new_scale = -0.001 * y_offset + 1
     _vision_cone.scale = Vector2(new_scale, new_scale)
+
+func trigger_checkpoint() -> void:
+    _checkpoint_pos = position
