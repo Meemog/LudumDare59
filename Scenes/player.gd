@@ -9,6 +9,17 @@ extends CharacterBody2D
 # Misc Physics
 var _tps_adjustment: float ## Physics adjustment to ensure forces are calculated correctly when physics ticks are inconsistant
 
+# Sprites
+var _vision_cone: Node2D
+var _y_start: float
+
+func _ready() -> void:
+    _vision_cone = $VisionCone
+    _y_start = position.y
+
+func _process(delta: float) -> void:
+    _process_vision()
+
 func _physics_process(delta: float) -> void:
     _tps_adjustment = Engine.physics_ticks_per_second * delta
     
@@ -16,7 +27,7 @@ func _physics_process(delta: float) -> void:
     
     move_and_slide()
     
-func _process_movement():
+func _process_movement() -> void:
     var x_scalar = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
     var y_scalar = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
     var movement_direction = Vector2(x_scalar, y_scalar).normalized()
@@ -25,7 +36,7 @@ func _process_movement():
     velocity.x = _process_velocity_component(velocity.x, movement_direction.x)
     velocity.y = _process_velocity_component(velocity.y, movement_direction.y)
 
-func _process_velocity_component(velocity_component, scalar):
+func _process_velocity_component(velocity_component, scalar) -> float:
     var component = velocity_component
     var direction = component / abs(component)
     var scalar_direction = scalar / abs(scalar)
@@ -49,3 +60,8 @@ func _process_velocity_component(velocity_component, scalar):
     if abs(component) > hard_max_velocity:
         component = hard_max_velocity * direction
     return component
+
+func _process_vision() -> void:
+    var y_offset = position.y - _y_start
+    var new_scale = -0.001 * y_offset + 1
+    _vision_cone.scale = Vector2(new_scale, new_scale)

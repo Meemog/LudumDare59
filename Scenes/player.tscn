@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bvl36w8yrs2e4"]
 
 [ext_resource type="Script" uid="uid://r01p844ucrm6" path="res://Scenes/player.gd" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://drdnfulfobmle" path="res://Assets/Sprites/VisionCone.png" id="2_cvnsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(54, 54)
@@ -14,6 +15,13 @@ dampening = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1551203545]
 shape = SubResource("RectangleShape2D_cvnsp")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=783650939]
+[node name="PlayerStrite" type="Sprite2D" parent="." unique_id=783650939]
 scale = Vector2(53.5, 53.5)
 texture = SubResource("PlaceholderTexture2D_6t5aa")
+
+[node name="VisionCone" type="Node2D" parent="." unique_id=1430507]
+
+[node name="VisionSprite" type="Sprite2D" parent="VisionCone" unique_id=1627437993]
+self_modulate = Color(1, 1, 1, 0.34509805)
+scale = Vector2(1.65, 1.65)
+texture = ExtResource("2_cvnsp")
