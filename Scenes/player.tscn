@@ -32,3 +32,13 @@ texture = ExtResource("2_cvnsp")
 [node name="Sprite2D" type="Sprite2D" parent="PersonalSonar" unique_id=1149514148]
 self_modulate = Color(1, 1, 1, 0.34509805)
 texture = ExtResource("2_cvnsp")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=866912497]
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
