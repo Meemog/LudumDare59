@@ -19,6 +19,7 @@ var _checkpoint_pos: Vector2
 func _ready() -> void:
     _vision_cone = $VisionCone
     _y_start = position.y
+    _checkpoint_pos = position
 
 func _process(delta: float) -> void:
     _process_vision()
@@ -29,7 +30,11 @@ func _physics_process(delta: float) -> void:
     _process_movement()
     
     move_and_slide()
-    
+
+func _input(event: InputEvent) -> void:
+    if event.is_action_pressed("kill"):
+        kill()
+
 func _process_movement() -> void:
     var x_scalar = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
     var y_scalar = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
@@ -71,3 +76,7 @@ func _process_vision() -> void:
 
 func trigger_checkpoint() -> void:
     _checkpoint_pos = position
+
+func kill() -> void:
+    velocity = Vector2.ZERO
+    position = _checkpoint_pos
