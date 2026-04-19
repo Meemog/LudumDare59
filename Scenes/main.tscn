@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://vtbmeiagl1st" path="res://Scenes/checkpoint.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://eyawafj404ax" path="res://Scenes/test_wall.tscn" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://brdaobtqsoq15" path="res://Scenes/darkness.gd" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://08hgwmbgc78v" path="res://Scenes/ui.tscn" id="6_21xkr"]
 
 [sub_resource type="Gradient" id="Gradient_jjvhh"]
 offsets = PackedFloat32Array(0, 0.018072288, 0.9879518, 1)
@@ -43,10 +44,14 @@ texture = SubResource("CanvasTexture_21xkr")
 script = ExtResource("5_kry3j")
 camera = NodePath("../Player")
 
-[node name="Player" parent="BackBufferCopy" unique_id=1356148789 instance=ExtResource("1_jjgbg")]
+[node name="Player" parent="BackBufferCopy" unique_id=1356148789 node_paths=PackedStringArray("ui") instance=ExtResource("1_jjgbg")]
 position = Vector2(-53, 4)
 collision_mask = 3
 soft_max_velocity = 200.0
 hard_max_velocity = 400.0
 acceleration = 30.0
 max_alpha = 0.94
+sonar_refresh_time = 3.3
+ui = NodePath("../../UI")
+
+[node name="UI" parent="." unique_id=1549543088 instance=ExtResource("6_21xkr")]

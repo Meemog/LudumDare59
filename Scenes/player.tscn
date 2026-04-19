@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://drdnfulfobmle" path="res://Assets/Sprites/VisionCone.png" id="2_cvnsp"]
 [ext_resource type="Shader" uid="uid://c5k7x8lnl0mk2" path="res://Scenes/vision.gdshader" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://crfnm33et8tx" path="res://Assets/Sprites/bubble.png" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://c1d50k27xi3th" path="res://Assets/Sounds/SFX/Submarine SFX Higher.mp3" id="5_fkybt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(54, 54)
@@ -71,3 +72,7 @@ drag_left_margin = 0.1
 drag_top_margin = 0.1
 drag_right_margin = 0.1
 drag_bottom_margin = 0.1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=445316378]
+stream = ExtResource("5_fkybt")
+bus = &"SFX"

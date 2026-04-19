@@ -10,6 +10,9 @@ extends CharacterBody2D
 @export var growth_speed: float = .15 ## The speed at which the personal sonar grows
 @export var fade_time: float = 1 ## The time it takes for the sonar to fully fade
 @export var max_alpha: float = 1 ## Alpha value of the darkness
+@export var sonar_refresh_time: float = 4 ## Amount of time to reload a sonar
+@export var sonar_cooldown: float = 1 ## Amount of time between sonar pings to prevent spamming
+@export var ui: Node
 
 @export_category("Death")
 @export var death_time: float = 3 ## Time after dying before respawn
@@ -21,11 +24,17 @@ var _tps_adjustment: float ## Physics adjustment to ensure forces are calculated
 # Sprites
 var _vision_cone: Node2D
 var _y_start: float
+
+# Sonar
 var _sonar_cone: Node2D
 var _sonar_sprite: Sprite2D
 var _sonar_dark: Sprite2D
 var _sonar_active: bool
-var _time_since_sonar: float
+var _time_since_sonar: float = 100
+var _time_since_sonar_refresh: float = 0
+var _MAX_SONARS: int = 4
+var _num_sonars: int
+var _sonar_sfx: AudioStreamPlayer
 
 # Dying
 var _player_sprite: Sprite2D
@@ -48,6 +57,8 @@ func _ready() -> void:
     _sonar_sprite = $PersonalSonar/mask
     _sonar_dark = $PersonalSonar/dark
     _sonar_cone.scale = Vector2.ZERO
+    _num_sonars = _MAX_SONARS
+    _sonar_sfx = $AudioStreamPlayer
     
     _checkpoint_pos = position
     
@@ -128,21 +139,31 @@ func _process_vision() -> void:
         _vision_cone.scale = Vector2(new_scale, new_scale)
 
 func _sonar() -> void:
-    _sonar_active = true
-    _time_since_sonar = 0
-    _sonar_dark.self_modulate.a = 0
-    _sonar_cone.scale = Vector2.ZERO
-    _sonar_cone.visible = true
+    if _time_since_sonar > sonar_cooldown and _num_sonars != 0:
+        _num_sonars -= 1
+        ui.set_sonars(_num_sonars)
+        _sonar_active = true
+        _time_since_sonar = 0
+        _sonar_dark.self_modulate.a = 0
+        _sonar_cone.scale = Vector2.ZERO
+        _sonar_cone.visible = true
+        _sonar_sfx.play()
 
 func _process_sonar(delta: float) -> void:
+    _time_since_sonar += delta
     if _sonar_active:
-        _time_since_sonar += delta
         _sonar_cone.scale += Vector2(growth_speed, growth_speed)
         var alpha = (_time_since_sonar/fade_time) * max_alpha
         _sonar_dark.self_modulate.a = alpha
         if _time_since_sonar > fade_time:
             _sonar_cone.visible = false
             _sonar_active = false
+    if _num_sonars < _MAX_SONARS:
+        _time_since_sonar_refresh += delta
+        if _time_since_sonar_refresh > sonar_refresh_time:
+            _time_since_sonar_refresh = 0
+            _num_sonars += 1
+            ui.set_sonars(_num_sonars)
 
 func trigger_checkpoint() -> void:
     _checkpoint_pos = position
