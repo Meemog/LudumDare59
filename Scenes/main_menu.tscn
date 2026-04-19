@@ -43,4 +43,97 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 62
 text = "Play"
 
+[node name="Credits" type="Control" parent="." unique_id=225018755]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = 28.0
+offset_right = 171.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Credits" unique_id=788128712]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.5
+offset_top = -44.5
+offset_right = 149.5
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 62
+text = "Credits"
+
+[node name="Settings" type="Control" parent="." unique_id=440449435]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = 133.0
+offset_right = 170.5
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Settings" unique_id=2130945096]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.5
+offset_top = -44.5
+offset_right = 149.5
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 62
+text = "Settings"
+
+[node name="Quit" type="Control" parent="." unique_id=1258272099]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = 238.0
+offset_right = 170.5
+offset_bottom = 392.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Quit" unique_id=713652934]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.5
+offset_top = -44.5
+offset_right = 149.5
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 62
+text = "Quit"
+
 [connection signal="pressed" from="Play/Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Credits/Button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Settings/Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Quit/Button" to="." method="_on_quit_button_pressed"]

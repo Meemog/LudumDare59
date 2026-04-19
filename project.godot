@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="FurryGameJamGame"
-run/main_scene="uid://b45u0odr2ptkv"
+run/main_scene="uid://rm0e0lprcjn5"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://b1nmfkpwdtol7"
 
 [display]
 
