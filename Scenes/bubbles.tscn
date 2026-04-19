@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://dki1bia61wip2"]
+
+[ext_resource type="Texture2D" uid="uid://bbwtrkgqlkqqi" path="res://Assets/Sprites/Bubble-Sheet.png" id="1_2ohvs"]
+[ext_resource type="Script" uid="uid://jegw7cwdy8ow" path="res://Scenes/bubbles.gd" id="1_urmec"]
+[ext_resource type="Texture2D" uid="uid://crfnm33et8tx" path="res://Assets/Sprites/bubble.png" id="3_moctl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urmec"]
+size = Vector2(320, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moctl"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(0, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h23i6"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(320, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8dq0"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(640, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v54si"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(960, 0, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt6i4"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(0, 160, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0hov"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(320, 160, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bi8d"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(640, 160, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6dee"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(960, 160, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cjg3"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(0, 320, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kix0i"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(320, 320, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjwyr"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(640, 320, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0dv3"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(960, 320, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms1hx"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(0, 480, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33qyt"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(320, 480, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2khw"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(640, 480, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi3rm"]
+atlas = ExtResource("1_2ohvs")
+region = Rect2(960, 480, 320, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ep02r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moctl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h23i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8dq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v54si")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt6i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0hov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bi8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6dee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cjg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kix0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjwyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0dv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms1hx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33qyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2khw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi3rm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h23i6"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 61.125, 1)
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+spread = 0.0
+initial_velocity_min = 120.0
+initial_velocity_max = 140.0
+gravity = Vector3(0, -10, 0)
+scale_min = 0.5
+scale_max = 0.7
+
+[node name="Bubbles" type="Node2D" unique_id=1341844542]
+script = ExtResource("1_urmec")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1371268744]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1067834417]
+shape = SubResource("RectangleShape2D_urmec")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1114422134]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ep02r")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=316643285]
+texture_filter = 1
+position = Vector2(-148, 9)
+amount = 20
+amount_ratio = 0.85
+texture = ExtResource("3_moctl")
+lifetime = 1.9400000000000002
+process_material = SubResource("ParticleProcessMaterial_h23i6")
