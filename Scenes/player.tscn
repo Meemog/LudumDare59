@@ -2,21 +2,33 @@
 
 [ext_resource type="Script" uid="uid://r01p844ucrm6" path="res://Scenes/player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://drdnfulfobmle" path="res://Assets/Sprites/VisionCone.png" id="2_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://crfnm33et8tx" path="res://Assets/Sprites/bubble.png" id="3_6t5aa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(54, 54)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6t5aa"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vgqql"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 66.92
+initial_velocity_max = 120.68
+gravity = Vector3(0, -50, 0)
+scale_min = 1.5
+scale_max = 1.5
+
 [node name="Player" type="CharacterBody2D" unique_id=1356148789]
 script = ExtResource("1_v0iea")
 dampening = 7
 growth_speed = 0.1
+light_shrink_speed = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1551203545]
 shape = SubResource("RectangleShape2D_cvnsp")
 
-[node name="PlayerStrite" type="Sprite2D" parent="." unique_id=783650939]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=783650939]
 scale = Vector2(53.5, 53.5)
 texture = SubResource("PlaceholderTexture2D_6t5aa")
 
@@ -32,6 +44,15 @@ texture = ExtResource("2_cvnsp")
 [node name="Sprite2D" type="Sprite2D" parent="PersonalSonar" unique_id=1149514148]
 self_modulate = Color(1, 1, 1, 0.34509805)
 texture = ExtResource("2_cvnsp")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=548458929]
+emitting = false
+amount = 20
+texture = ExtResource("3_6t5aa")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.99
+process_material = SubResource("ParticleProcessMaterial_vgqql")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=866912497]
 process_callback = 0

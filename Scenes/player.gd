@@ -10,6 +10,10 @@ extends CharacterBody2D
 @export var growth_speed: float = .15 ## The speed at which the personal sonar grows
 @export var fade_time: float = 1 ## The time it takes for the sonar to fully fade
 
+@export_category("Death")
+@export var death_time: float = 3 ## Time after dying before respawn
+@export var light_shrink_speed = 0.05
+
 # Misc Physics
 var _tps_adjustment: float ## Physics adjustment to ensure forces are calculated correctly when physics ticks are inconsistant
 
@@ -23,12 +27,22 @@ var _start_alpha: float
 var _sonar_active: bool
 var _time_since_sonar: float
 
+# Dying
+var _player_sprite: Sprite2D
+var _particles: GPUParticles2D
+var _is_dying: bool = false
+var _time_since_died: float = 0
+var _can_move: bool = true
+
 # Gameplay
 var _checkpoint_pos: Vector2
 
 func _ready() -> void:
     _vision_cone = $VisionCone
     _y_start = position.y
+    
+    _player_sprite = $PlayerSprite
+    _particles = $GPUParticles2D
     
     _sonar_cone = $PersonalSonar
     _sonar_sprite = $PersonalSonar/Sprite2D
@@ -39,6 +53,8 @@ func _ready() -> void:
     _checkpoint_pos = position
     
 func _process(delta: float) -> void:
+    _process_respawn(delta)
+    
     _process_vision()
     
     _process_sonar(delta)
@@ -46,15 +62,26 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
     _tps_adjustment = Engine.physics_ticks_per_second * delta
     
-    _process_movement()
-    
-    move_and_slide()
+    if _can_move:
+        _process_movement()
+        move_and_slide()
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("kill"):
         kill()
     elif event.is_action_pressed("personal_sonar"):
         _sonar()
+
+func _process_respawn(delta: float) -> void:
+    if _is_dying:
+        _time_since_died += delta
+        if _time_since_died > death_time:
+            # respawn player
+            velocity = Vector2.ZERO
+            position = _checkpoint_pos
+            _is_dying = false
+            _player_sprite.visible = true
+            _can_move = true
 
 func _process_movement() -> void:
     var x_scalar = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
@@ -91,9 +118,15 @@ func _process_velocity_component(velocity_component, scalar) -> float:
     return component
 
 func _process_vision() -> void:
-    var y_offset = position.y - _y_start
-    var new_scale = -0.001 * y_offset + 1
-    _vision_cone.scale = Vector2(new_scale, new_scale)
+    if _is_dying:
+        var temp_scale = _vision_cone.scale.x
+        temp_scale -= light_shrink_speed*0.01
+        if temp_scale < 0: temp_scale = 0
+        _vision_cone.scale = temp_scale * Vector2.ONE
+    else:
+        var y_offset = position.y - _y_start
+        var new_scale = -0.001 * y_offset + 1
+        _vision_cone.scale = Vector2(new_scale, new_scale)
 
 func _sonar() -> void:
     _sonar_active = true
@@ -118,5 +151,8 @@ func trigger_checkpoint() -> void:
     _checkpoint_pos = position
 
 func kill() -> void:
-    velocity = Vector2.ZERO
-    position = _checkpoint_pos
+    _player_sprite.visible = false
+    _particles.emitting = true
+    _can_move = false
+    _time_since_died = 0
+    _is_dying = true
