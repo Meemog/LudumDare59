@@ -4,22 +4,49 @@
 [ext_resource type="PackedScene" uid="uid://dki1bia61wip2" path="res://Scenes/bubbles.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://vtbmeiagl1st" path="res://Scenes/checkpoint.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://eyawafj404ax" path="res://Scenes/test_wall.tscn" id="4_jjvhh"]
+[ext_resource type="Script" uid="uid://brdaobtqsoq15" path="res://Scenes/darkness.gd" id="5_kry3j"]
+
+[sub_resource type="Gradient" id="Gradient_jjvhh"]
+offsets = PackedFloat32Array(0, 0.018072288, 0.9879518, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.40361446, 0.40361446, 0.40361446, 1, 0, 0.41552535, 0.4235114, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kry3j"]
+gradient = SubResource("Gradient_jjvhh")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_21xkr"]
 
 [node name="Main" type="Node2D" unique_id=2099088848]
 
+[node name="background" type="Sprite2D" parent="." unique_id=1009326119]
+position = Vector2(470.99994, -2)
+scale = Vector2(17.281248, 2891)
+texture = SubResource("GradientTexture1D_kry3j")
+
 [node name="Checkpoint" parent="." unique_id=1489703755 instance=ExtResource("2_bo1nx")]
 position = Vector2(539, 459)
-
-[node name="Player" parent="." unique_id=1356148789 instance=ExtResource("1_jjgbg")]
-position = Vector2(545, 65)
-collision_mask = 3
-soft_max_velocity = 200.0
-hard_max_velocity = 400.0
-acceleration = 30.0
 
 [node name="Bubbles" parent="." unique_id=1341844542 instance=ExtResource("2_8gbba")]
 position = Vector2(1024, 309)
 
 [node name="TestWall" parent="." unique_id=535881776 instance=ExtResource("4_jjvhh")]
 position = Vector2(211, 282)
-collision_layer = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1943875325]
+position = Vector2(606, 317)
+copy_mode = 2
+
+[node name="Darkness" type="Sprite2D" parent="BackBufferCopy" unique_id=139276265 node_paths=PackedStringArray("camera")]
+modulate = Color(0, 0, 0, 0.94509804)
+position = Vector2(-126.00006, -96.000015)
+scale = Vector2(3686, 2326)
+texture = SubResource("CanvasTexture_21xkr")
+script = ExtResource("5_kry3j")
+camera = NodePath("../Player")
+
+[node name="Player" parent="BackBufferCopy" unique_id=1356148789 instance=ExtResource("1_jjgbg")]
+position = Vector2(-53, 4)
+collision_mask = 3
+soft_max_velocity = 200.0
+hard_max_velocity = 400.0
+acceleration = 30.0
+max_alpha = 0.94

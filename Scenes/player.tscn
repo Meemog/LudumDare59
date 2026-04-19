@@ -2,10 +2,14 @@
 
 [ext_resource type="Script" uid="uid://r01p844ucrm6" path="res://Scenes/player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://drdnfulfobmle" path="res://Assets/Sprites/VisionCone.png" id="2_cvnsp"]
+[ext_resource type="Shader" uid="uid://c5k7x8lnl0mk2" path="res://Scenes/vision.gdshader" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://crfnm33et8tx" path="res://Assets/Sprites/bubble.png" id="3_6t5aa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(54, 54)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkybt"]
+shader = ExtResource("2_vgqql")
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6t5aa"]
 
@@ -28,22 +32,26 @@ light_shrink_speed = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1551203545]
 shape = SubResource("RectangleShape2D_cvnsp")
 
-[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=783650939]
-scale = Vector2(53.5, 53.5)
-texture = SubResource("PlaceholderTexture2D_6t5aa")
+[node name="PersonalSonar" type="Node2D" parent="." unique_id=569842081]
+
+[node name="mask" type="Sprite2D" parent="PersonalSonar" unique_id=1149514148]
+material = SubResource("ShaderMaterial_fkybt")
+texture = ExtResource("2_cvnsp")
+
+[node name="dark" type="Sprite2D" parent="PersonalSonar" unique_id=1104522499]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("2_cvnsp")
 
 [node name="VisionCone" type="Node2D" parent="." unique_id=1430507]
 
 [node name="VisionSprite" type="Sprite2D" parent="VisionCone" unique_id=1627437993]
-self_modulate = Color(1, 1, 1, 0.34509805)
+material = SubResource("ShaderMaterial_fkybt")
 scale = Vector2(1.65, 1.65)
 texture = ExtResource("2_cvnsp")
 
-[node name="PersonalSonar" type="Node2D" parent="." unique_id=569842081]
-
-[node name="Sprite2D" type="Sprite2D" parent="PersonalSonar" unique_id=1149514148]
-self_modulate = Color(1, 1, 1, 0.34509805)
-texture = ExtResource("2_cvnsp")
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=783650939]
+scale = Vector2(53.5, 53.5)
+texture = SubResource("PlaceholderTexture2D_6t5aa")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=548458929]
 emitting = false

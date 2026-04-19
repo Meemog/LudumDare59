@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export_category("Sonar")
 @export var growth_speed: float = .15 ## The speed at which the personal sonar grows
 @export var fade_time: float = 1 ## The time it takes for the sonar to fully fade
+@export var max_alpha: float = 1 ## Alpha value of the darkness
 
 @export_category("Death")
 @export var death_time: float = 3 ## Time after dying before respawn
@@ -22,8 +23,7 @@ var _vision_cone: Node2D
 var _y_start: float
 var _sonar_cone: Node2D
 var _sonar_sprite: Sprite2D
-var _current_alpha: float
-var _start_alpha: float
+var _sonar_dark: Sprite2D
 var _sonar_active: bool
 var _time_since_sonar: float
 
@@ -45,10 +45,9 @@ func _ready() -> void:
     _particles = $GPUParticles2D
     
     _sonar_cone = $PersonalSonar
-    _sonar_sprite = $PersonalSonar/Sprite2D
+    _sonar_sprite = $PersonalSonar/mask
+    _sonar_dark = $PersonalSonar/dark
     _sonar_cone.scale = Vector2.ZERO
-    _start_alpha = _sonar_sprite.self_modulate.a
-    _current_alpha = _start_alpha
     
     _checkpoint_pos = position
     
@@ -131,7 +130,7 @@ func _process_vision() -> void:
 func _sonar() -> void:
     _sonar_active = true
     _time_since_sonar = 0
-    _sonar_sprite.self_modulate.a = _start_alpha
+    _sonar_dark.self_modulate.a = 0
     _sonar_cone.scale = Vector2.ZERO
     _sonar_cone.visible = true
 
@@ -139,10 +138,8 @@ func _process_sonar(delta: float) -> void:
     if _sonar_active:
         _time_since_sonar += delta
         _sonar_cone.scale += Vector2(growth_speed, growth_speed)
-        var alpha = (1 - _time_since_sonar/fade_time) * _start_alpha
-        if alpha < 0:
-            alpha = 0
-        _sonar_sprite.self_modulate.a = alpha
+        var alpha = (_time_since_sonar/fade_time) * max_alpha
+        _sonar_dark.self_modulate.a = alpha
         if _time_since_sonar > fade_time:
             _sonar_cone.visible = false
             _sonar_active = false
