@@ -56,7 +56,7 @@ personal_sonar={
 [layer_names]
 
 2d_physics/layer_1="Player"
-2d_physics/layer_2="layer 2"
+2d_physics/layer_2="Walls"
 
 [physics]
 

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://eyawafj404ax"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c8rlk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iddas"]
+size = Vector2(148, 38)
+
+[node name="TestWall" type="StaticBody2D" unique_id=535881776]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=579414561]
+scale = Vector2(147.5, 37.5)
+texture = SubResource("PlaceholderTexture2D_c8rlk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1935070635]
+shape = SubResource("RectangleShape2D_iddas")
