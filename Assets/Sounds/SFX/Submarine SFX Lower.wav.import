@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://pflyv03qelvh"
+path="res://.godot/imported/Submarine SFX Lower.wav-666310c116b7d33fdcaaebd478047c4d.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/SFX/Submarine SFX Lower.wav"
+dest_files=["res://.godot/imported/Submarine SFX Lower.wav-666310c116b7d33fdcaaebd478047c4d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://co6aadmfh5lrr"]
+
+[ext_resource type="AudioStream" uid="uid://c1d50k27xi3th" path="res://Assets/Sounds/SFX/Submarine SFX Higher.mp3" id="1_jcyy0"]
+
+[node name="Submarine Higher" type="AudioStreamPlayer2D" unique_id=1201714533]
+position = Vector2(18, 56)
+stream = ExtResource("1_jcyy0")
