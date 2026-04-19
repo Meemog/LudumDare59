@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://drdnfulfobmle" path="res://Assets/Sprites/VisionCone.png" id="2_cvnsp"]
 [ext_resource type="Shader" uid="uid://c5k7x8lnl0mk2" path="res://Scenes/vision.gdshader" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://crfnm33et8tx" path="res://Assets/Sprites/bubble.png" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://h17py12wtmut" path="res://Assets/Sprites/sprites1.png" id="4_x3wgy"]
 [ext_resource type="AudioStream" uid="uid://c1d50k27xi3th" path="res://Assets/Sounds/SFX/Submarine SFX Higher.mp3" id="5_fkybt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
@@ -12,7 +13,60 @@ size = Vector2(54, 54)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fkybt"]
 shader = ExtResource("2_vgqql")
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6t5aa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
+atlas = ExtResource("4_x3wgy")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
+atlas = ExtResource("4_x3wgy")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
+atlas = ExtResource("4_x3wgy")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("4_x3wgy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
+atlas = ExtResource("4_x3wgy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
+atlas = ExtResource("4_x3wgy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ukyrk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3smsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8erm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ek2")
+}],
+"loop": true,
+"name": &"stopping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gymyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2lt")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 4.0
+}]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vgqql"]
 lifetime_randomness = 0.2
@@ -50,9 +104,13 @@ material = SubResource("ShaderMaterial_fkybt")
 scale = Vector2(1.65, 1.65)
 texture = ExtResource("2_cvnsp")
 
-[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=783650939]
-scale = Vector2(53.5, 53.5)
-texture = SubResource("PlaceholderTexture2D_6t5aa")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1504400235]
+texture_filter = 1
+position = Vector2(2.3841858e-07, 0)
+scale = Vector2(1.875, 1.875)
+sprite_frames = SubResource("SpriteFrames_ukyrk")
+animation = &"swim"
+frame_progress = 0.5031789
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=548458929]
 emitting = false
@@ -64,6 +122,7 @@ explosiveness = 0.99
 process_material = SubResource("ParticleProcessMaterial_vgqql")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=866912497]
+zoom = Vector2(1.4, 1.4)
 process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true

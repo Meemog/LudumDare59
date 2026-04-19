@@ -36,8 +36,12 @@ var _MAX_SONARS: int = 4
 var _num_sonars: int
 var _sonar_sfx: AudioStreamPlayer
 
+# Animation
+var _player_sprite: AnimatedSprite2D
+var _is_stopping: bool = false
+var _facing_right: bool = true
+
 # Dying
-var _player_sprite: Sprite2D
 var _particles: GPUParticles2D
 var _is_dying: bool = false
 var _time_since_died: float = 0
@@ -50,8 +54,10 @@ func _ready() -> void:
     _vision_cone = $VisionCone
     _y_start = position.y
     
-    _player_sprite = $PlayerSprite
+    _player_sprite = $AnimatedSprite2D
     _particles = $GPUParticles2D
+    
+    _player_sprite.play("swim")
     
     _sonar_cone = $PersonalSonar
     _sonar_sprite = $PersonalSonar/mask
@@ -101,6 +107,20 @@ func _process_movement() -> void:
         movement_direction *= 1/sqrt(2) # WHYY does this work??
     velocity.x = _process_velocity_component(velocity.x, movement_direction.x)
     velocity.y = _process_velocity_component(velocity.y, movement_direction.y)
+    
+    if x_scalar == 0 and y_scalar == 0 and _is_stopping == false and velocity.length() != 0:
+        _player_sprite.play("stopping")
+        _is_stopping = true
+    elif _is_stopping and (velocity.length() == 0 or x_scalar != 0 or y_scalar != 0):
+        _player_sprite.play("swim")
+        _is_stopping = false
+    
+    if x_scalar > 0 and not _facing_right:
+        _player_sprite.scale.x = abs(_player_sprite.scale.x)
+        _facing_right = true
+    elif x_scalar < 0 and _facing_right:
+        _player_sprite.scale.x = abs(_player_sprite.scale.x) * -1
+        _facing_right = false
 
 func _process_velocity_component(velocity_component, scalar) -> float:
     var component = velocity_component
