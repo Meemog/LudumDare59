@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dki1bia61wip2" path="res://Scenes/bubbles.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://vtbmeiagl1st" path="res://Scenes/checkpoint.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://eyawafj404ax" path="res://Scenes/test_wall.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://bqft8rq6f01ek" path="res://Scenes/rocky.tscn" id="5_6bp64"]
 [ext_resource type="Script" uid="uid://brdaobtqsoq15" path="res://Scenes/darkness.gd" id="5_kry3j"]
 [ext_resource type="PackedScene" uid="uid://08hgwmbgc78v" path="res://Scenes/ui.tscn" id="6_21xkr"]
 
@@ -44,11 +45,14 @@ texture = SubResource("CanvasTexture_21xkr")
 script = ExtResource("5_kry3j")
 camera = NodePath("../Player")
 
+[node name="Rocky" parent="BackBufferCopy" unique_id=1916460702 instance=ExtResource("5_6bp64")]
+position = Vector2(653, 465)
+
 [node name="Player" parent="BackBufferCopy" unique_id=1356148789 node_paths=PackedStringArray("ui") instance=ExtResource("1_jjgbg")]
 position = Vector2(-53, 4)
 collision_mask = 3
 soft_max_velocity = 200.0
-hard_max_velocity = 400.0
+hard_max_velocity = 300.0
 acceleration = 30.0
 max_alpha = 0.94
 sonar_refresh_time = 3.3

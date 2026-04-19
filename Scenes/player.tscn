@@ -100,19 +100,22 @@ texture = ExtResource("2_cvnsp")
 [node name="VisionCone" type="Node2D" parent="." unique_id=1430507]
 
 [node name="VisionSprite" type="Sprite2D" parent="VisionCone" unique_id=1627437993]
+z_index = 1
 material = SubResource("ShaderMaterial_fkybt")
 scale = Vector2(1.65, 1.65)
 texture = ExtResource("2_cvnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1504400235]
+z_index = 2
 texture_filter = 1
 position = Vector2(2.3841858e-07, 0)
 scale = Vector2(1.875, 1.875)
 sprite_frames = SubResource("SpriteFrames_ukyrk")
 animation = &"swim"
-frame_progress = 0.5031789
+frame_progress = 0.8991009
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=548458929]
+z_index = 4
 emitting = false
 amount = 20
 texture = ExtResource("3_6t5aa")
