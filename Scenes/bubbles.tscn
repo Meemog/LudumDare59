@@ -159,5 +159,5 @@ position = Vector2(-148, 9)
 amount = 20
 amount_ratio = 0.85
 texture = ExtResource("3_moctl")
-lifetime = 1.9400000000000002
+lifetime = 1.94
 process_material = SubResource("ParticleProcessMaterial_h23i6")

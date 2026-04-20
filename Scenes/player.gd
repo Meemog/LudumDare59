@@ -23,6 +23,7 @@ var _tps_adjustment: float ## Physics adjustment to ensure forces are calculated
 
 # Sprites
 var _vision_cone: Node2D
+var _scale_start: float
 var _y_start: float
 
 # Sonar
@@ -52,6 +53,7 @@ var _checkpoint_pos: Vector2
 
 func _ready() -> void:
     _vision_cone = $VisionCone
+    _scale_start = _vision_cone.scale.x
     _y_start = position.y
     
     _player_sprite = $AnimatedSprite2D
@@ -155,7 +157,7 @@ func _process_vision() -> void:
         _vision_cone.scale = temp_scale * Vector2.ONE
     else:
         var y_offset = position.y - _y_start
-        var new_scale = -0.001 * y_offset + 1
+        var new_scale = -0.000185 * y_offset + _scale_start
         _vision_cone.scale = Vector2(new_scale, new_scale)
 
 func _sonar() -> void:

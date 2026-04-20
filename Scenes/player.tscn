@@ -98,6 +98,7 @@ modulate = Color(0, 0, 0, 1)
 texture = ExtResource("2_cvnsp")
 
 [node name="VisionCone" type="Node2D" parent="." unique_id=1430507]
+scale = Vector2(1.3, 1.3)
 
 [node name="VisionSprite" type="Sprite2D" parent="VisionCone" unique_id=1627437993]
 z_index = 1
