@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("kill"):
         kill()
-    elif event.is_action_pressed("personal_sonar"):
+    elif event.is_action_pressed("personal_sonar") and _can_move:
         _sonar()
 
 func _process_respawn(delta: float) -> void:

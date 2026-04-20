@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bmypwq0loc0mr" path="res://Scenes/main_menu.gd" id="1_28flt"]
 [ext_resource type="PackedScene" uid="uid://cdujn52hqdfwn" path="res://Scenes/TestScene.tscn" id="2_48xlc"]
 [ext_resource type="Texture2D" uid="uid://ctombkxtxve2b" path="res://Assets/Sprites/GameJam256_menu.png" id="3_1ehe0"]
+[ext_resource type="AudioStream" uid="uid://butri4wivmvw4" path="res://Assets/Sounds/Music/Prepare to Dive.wav" id="4_ce3w2"]
+[ext_resource type="Shader" uid="uid://c5k7x8lnl0mk2" path="res://Scenes/vision.gdshader" id="4_opfnp"]
+[ext_resource type="Texture2D" uid="uid://drdnfulfobmle" path="res://Assets/Sprites/VisionCone.png" id="5_cp0ys"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ce3w2"]
 atlas = ExtResource("3_1ehe0")
@@ -51,6 +54,11 @@ region = Rect2(96, 32, 96, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vtepg"]
 atlas = ExtResource("3_1ehe0")
 region = Rect2(0, 160, 96, 32)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yhxw7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trj04"]
+shader = ExtResource("4_opfnp")
 
 [node name="Main Menu" type="Control" unique_id=2062227031]
 layout_mode = 3
@@ -194,6 +202,28 @@ texture_normal = SubResource("AtlasTexture_t1dhk")
 texture_pressed = SubResource("AtlasTexture_5egv6")
 texture_hover = SubResource("AtlasTexture_vtepg")
 stretch_mode = 6
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1531092934]
+copy_mode = 2
+
+[node name="blackness" type="Sprite2D" parent="BackBufferCopy" unique_id=512967626]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(963.0002, 481.49997)
+scale = Vector2(2528.0002, 2137)
+texture = SubResource("CanvasTexture_yhxw7")
+
+[node name="mask" type="Sprite2D" parent="BackBufferCopy" unique_id=666324216]
+texture_filter = 1
+material = SubResource("ShaderMaterial_trj04")
+position = Vector2(959.00006, 536.00006)
+scale = Vector2(6.89375, 6.89375)
+texture = ExtResource("5_cp0ys")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=826605142]
+stream = ExtResource("4_ce3w2")
+volume_db = -20.982
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="Play/Button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Credits/Button" to="." method="_on_credits_button_pressed"]
