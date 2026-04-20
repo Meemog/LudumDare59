@@ -10,9 +10,15 @@ var _time_since_play: float = 0
 var _music_player: AudioStreamPlayer
 var _start_vol: float
 
+var _credits_group: Node2D
+var _menu_group: Node2D
+
 func _ready() -> void:
     _mask = $BackBufferCopy/mask
     _music_player = $Music
+    
+    _credits_group = $credits
+    _menu_group = $menu
     _start_vol = _music_player.volume_db
 
 func _process(delta: float) -> void:
@@ -44,7 +50,8 @@ func _on_play_button_pressed() -> void:
     
 func _on_credits_button_pressed() -> void:
     if not _is_shrinking:
-        pass # Replace with function body.
+        _credits_group.show()
+        _menu_group.hide()
 
 func _on_settings_button_pressed() -> void:
     if not _is_shrinking:
@@ -53,3 +60,8 @@ func _on_settings_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
     if not _is_shrinking:
         get_tree().quit()
+
+
+func _on_credits_exit_button_pressed() -> void:
+    _credits_group.hide()
+    _menu_group.show()

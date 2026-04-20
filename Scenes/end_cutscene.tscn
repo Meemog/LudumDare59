@@ -1,22 +1,108 @@
 [gd_scene format=3 uid="uid://ce83fb4wj172e"]
 
 [ext_resource type="FontFile" uid="uid://dw6cwtjqyrd8o" path="res://Assets/Sprites/Super Starfish.ttf" id="1_0r5tv"]
+[ext_resource type="Script" uid="uid://dem5vjxk71dy2" path="res://Scenes/end_cutscene.gd" id="1_u0fgy"]
+[ext_resource type="SpriteFrames" uid="uid://bpu0jiivd2egx" path="res://Assets/Sprites/player_frames.tres" id="3_4qqog"]
+[ext_resource type="SpriteFrames" uid="uid://vgj54wi2214p" path="res://Assets/Sprites/rocky_frames.tres" id="4_5fbkq"]
+[ext_resource type="Texture2D" uid="uid://botvu4ntb3des" path="res://Assets/Sprites/heart.png" id="5_4qqog"]
+[ext_resource type="Texture2D" uid="uid://ctombkxtxve2b" path="res://Assets/Sprites/GameJam256_menu.png" id="6_5fbkq"]
+[ext_resource type="AudioStream" uid="uid://butri4wivmvw4" path="res://Assets/Sounds/Music/Prepare to Dive.wav" id="7_yc1c7"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_6jwe3"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5fbkq"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 95.86
+direction = Vector3(0, -1, 0)
+initial_velocity_max = 102.15
+gravity = Vector3(0, -50, 0)
+scale_max = 6.3799996
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc1c7"]
+atlas = ExtResource("6_5fbkq")
+region = Rect2(0, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yjki"]
+atlas = ExtResource("6_5fbkq")
+region = Rect2(96, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itcvd"]
+atlas = ExtResource("6_5fbkq")
+region = Rect2(0, 160, 96, 32)
+
 [node name="EndCutscene" type="Node2D" unique_id=446603855]
+script = ExtResource("1_u0fgy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1398221929]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(974, 530.49994)
-scale = Vector2(1978, 1079)
+position = Vector2(974, 556.49994)
+scale = Vector2(1978, 1131)
 texture = SubResource("CanvasTexture_6jwe3")
 
 [node name="Label" type="Label" parent="." unique_id=26859373]
-offset_left = 589.0
-offset_top = 378.0
-offset_right = 1397.0
-offset_bottom = 647.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 577.0
+offset_top = 72.0
+offset_right = 1385.0
+offset_bottom = 341.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_0r5tv")
 theme_override_font_sizes/font_size = 252
 text = "You win"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="characters" type="Node2D" parent="." unique_id=65054044]
+position = Vector2(960, 500)
+
+[node name="Splash" type="AnimatedSprite2D" parent="characters" unique_id=107381812]
+texture_filter = 1
+position = Vector2(-200, 0)
+scale = Vector2(9.105, 9.105)
+sprite_frames = ExtResource("3_4qqog")
+animation = &"stopping"
+
+[node name="Rocky" type="AnimatedSprite2D" parent="characters" unique_id=1201531676]
+texture_filter = 1
+position = Vector2(200, 0)
+scale = Vector2(9.105, 9.105)
+sprite_frames = ExtResource("4_5fbkq")
+animation = &"happy"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=79853702]
+texture_filter = 1
+position = Vector2(967, 472)
+texture = ExtResource("5_4qqog")
+lifetime = 3.3099999999999996
+process_material = SubResource("ParticleProcessMaterial_5fbkq")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1625605453]
+texture_filter = 1
+offset_left = 672.0
+offset_top = 743.0
+offset_right = 1250.0
+offset_bottom = 921.0
+texture_normal = SubResource("AtlasTexture_yc1c7")
+texture_pressed = SubResource("AtlasTexture_5yjki")
+texture_hover = SubResource("AtlasTexture_itcvd")
+stretch_mode = 6
+
+[node name="fadein" type="Sprite2D" parent="." unique_id=850447132]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(974, 556.49994)
+scale = Vector2(1978, 1131)
+texture = SubResource("CanvasTexture_6jwe3")
+
+[node name="music" type="AudioStreamPlayer" parent="." unique_id=1579889216]
+stream = ExtResource("7_yc1c7")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

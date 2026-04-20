@@ -9,7 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://crfnm33et8tx" path="res://Assets/Sprites/bubble.png" id="4_vr1f0"]
 [ext_resource type="Texture2D" uid="uid://drdnfulfobmle" path="res://Assets/Sprites/VisionCone.png" id="5_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://bj61dk7sdmskh" path="res://Assets/Sprites/Title_Screen_fg.png" id="5_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://dovtt5uaf683m" path="res://Assets/Sprites/Box.png" id="8_5egv6"]
+[ext_resource type="Texture2D" uid="uid://dqwly8t5iylwn" path="res://Assets/Sprites/Woofles.png" id="9_vtepg"]
 [ext_resource type="Texture2D" uid="uid://cfc7nvcp76034" path="res://Assets/Sprites/Logo.png" id="10_5egv6"]
+[ext_resource type="FontFile" uid="uid://dw6cwtjqyrd8o" path="res://Assets/Sprites/Super Starfish.ttf" id="10_8dnnj"]
+[ext_resource type="Texture2D" uid="uid://c6oyqw8mtts86" path="res://Assets/Sprites/Evy.png" id="11_wyh8j"]
+[ext_resource type="Texture2D" uid="uid://to23esghcn03" path="res://Assets/Sprites/LunarAkai.png" id="12_ujyyl"]
+[ext_resource type="Texture2D" uid="uid://djfiti3u25cs4" path="res://Assets/Sprites/Storm.png" id="13_mkpwh"]
+[ext_resource type="Texture2D" uid="uid://up23hrhge85t" path="res://Assets/Sprites/Moggy.png" id="14_4nkqq"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vtepg"]
 lifetime_randomness = 0.09
@@ -66,6 +73,18 @@ region = Rect2(96, 32, 96, 32)
 atlas = ExtResource("3_1ehe0")
 region = Rect2(0, 160, 96, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehtkc"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(0, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dk6o"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(96, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr6u5"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(0, 160, 96, 32)
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_yhxw7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trj04"]
@@ -105,8 +124,16 @@ position = Vector2(960, 540)
 scale = Vector2(7.4, 7.4)
 texture = ExtResource("5_t1dhk")
 
-[node name="Play" type="Control" parent="." unique_id=241402080]
-layout_mode = 1
+[node name="menu" type="Node2D" parent="." unique_id=1614283483]
+position = Vector2(960, 500)
+
+[node name="Logo" type="Sprite2D" parent="menu" unique_id=1667517712]
+position = Vector2(0, -259)
+scale = Vector2(0.8914729, 0.8914729)
+texture = ExtResource("10_5egv6")
+
+[node name="Play" type="Control" parent="menu" unique_id=241402080]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -119,7 +146,7 @@ offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="TextureButton" parent="Play" unique_id=965663106]
+[node name="Button" type="TextureButton" parent="menu/Play" unique_id=965663106]
 texture_filter = 1
 custom_minimum_size = Vector2(299, 94)
 layout_mode = 1
@@ -139,8 +166,8 @@ texture_pressed = SubResource("AtlasTexture_n45e2")
 texture_hover = SubResource("AtlasTexture_opfnp")
 stretch_mode = 6
 
-[node name="Credits" type="Control" parent="." unique_id=225018755]
-layout_mode = 1
+[node name="Credits" type="Control" parent="menu" unique_id=225018755]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -153,7 +180,7 @@ offset_bottom = 123.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="TextureButton" parent="Credits" unique_id=178200918]
+[node name="Button" type="TextureButton" parent="menu/Credits" unique_id=178200918]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -172,8 +199,8 @@ texture_pressed = SubResource("AtlasTexture_cp0ys")
 texture_hover = SubResource("AtlasTexture_yhxw7")
 stretch_mode = 6
 
-[node name="Settings" type="Control" parent="." unique_id=440449435]
-layout_mode = 1
+[node name="Settings" type="Control" parent="menu" unique_id=440449435]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -186,7 +213,7 @@ offset_bottom = 228.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="TextureButton" parent="Settings" unique_id=922070234]
+[node name="Button" type="TextureButton" parent="menu/Settings" unique_id=922070234]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -205,8 +232,8 @@ texture_pressed = SubResource("AtlasTexture_16hvj")
 texture_hover = SubResource("AtlasTexture_vr1f0")
 stretch_mode = 6
 
-[node name="Quit" type="Control" parent="." unique_id=1258272099]
-layout_mode = 1
+[node name="Quit" type="Control" parent="menu" unique_id=1258272099]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -219,7 +246,7 @@ offset_bottom = 333.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="TextureButton" parent="Quit" unique_id=476557041]
+[node name="Button" type="TextureButton" parent="menu/Quit" unique_id=476557041]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -238,10 +265,147 @@ texture_pressed = SubResource("AtlasTexture_5egv6")
 texture_hover = SubResource("AtlasTexture_vtepg")
 stretch_mode = 6
 
-[node name="Logo" type="Sprite2D" parent="." unique_id=1667517712]
-position = Vector2(960, 241)
-scale = Vector2(0.8914729, 0.8914729)
-texture = ExtResource("10_5egv6")
+[node name="credits" type="Node2D" parent="." unique_id=890400071]
+visible = false
+position = Vector2(960, 540)
+
+[node name="Woofles" type="Sprite2D" parent="credits" unique_id=870580802]
+texture_filter = 1
+position = Vector2(550, -320)
+scale = Vector2(6.8125, 6.8125)
+texture = ExtResource("8_5egv6")
+
+[node name="Sprite2D" type="Sprite2D" parent="credits/Woofles" unique_id=1051726269]
+position = Vector2(-30.678898, -0.14679217)
+scale = Vector2(0.08852626, 0.08852627)
+texture = ExtResource("9_vtepg")
+
+[node name="Label" type="Label" parent="credits/Woofles" unique_id=1113193636]
+offset_left = -13.211009
+offset_top = -10.568809
+offset_right = 408.789
+offset_bottom = 182.4312
+scale = Vector2(0.115, 0.115)
+theme_override_fonts/font = ExtResource("10_8dnnj")
+theme_override_font_sizes/font_size = 42
+text = "Woofles T. Waffler (Any)
+
+- Level Design
+"
+
+[node name="Evy" type="Sprite2D" parent="credits" unique_id=1365484308]
+texture_filter = 1
+position = Vector2(-550, -320)
+scale = Vector2(6.8125, 6.8125)
+texture = ExtResource("8_5egv6")
+
+[node name="Sprite2D" type="Sprite2D" parent="credits/Evy" unique_id=647947091]
+position = Vector2(-30.678898, -0.14679217)
+scale = Vector2(0.08852626, 0.08852627)
+texture = ExtResource("11_wyh8j")
+
+[node name="Label" type="Label" parent="credits/Evy" unique_id=1175676712]
+offset_left = -13.211009
+offset_top = -10.568809
+offset_right = 408.789
+offset_bottom = 182.4312
+scale = Vector2(0.115, 0.115)
+theme_override_fonts/font = ExtResource("10_8dnnj")
+theme_override_font_sizes/font_size = 42
+text = "EvyCl (She/Her)
+
+- Environment/Asset Artist
+"
+
+[node name="Lunar" type="Sprite2D" parent="credits" unique_id=1954259704]
+texture_filter = 1
+scale = Vector2(6.8125, 6.8125)
+texture = ExtResource("8_5egv6")
+
+[node name="Sprite2D" type="Sprite2D" parent="credits/Lunar" unique_id=2029955285]
+position = Vector2(-30.678898, -0.14679217)
+scale = Vector2(0.08852626, 0.08852627)
+texture = ExtResource("12_ujyyl")
+
+[node name="Label" type="Label" parent="credits/Lunar" unique_id=2028143271]
+offset_left = -18.348625
+offset_top = -10.862387
+offset_right = 516.65137
+offset_bottom = 182.13762
+scale = Vector2(0.115, 0.115)
+theme_override_fonts/font = ExtResource("10_8dnnj")
+theme_override_font_sizes/font_size = 42
+text = "LunarAkai / Leonie Luna Freitag
+
+- Music
+"
+
+[node name="Storm" type="Sprite2D" parent="credits" unique_id=95220158]
+texture_filter = 1
+position = Vector2(550, 320)
+scale = Vector2(6.8125, 6.8125)
+texture = ExtResource("8_5egv6")
+
+[node name="Sprite2D" type="Sprite2D" parent="credits/Storm" unique_id=1040727018]
+position = Vector2(-30.678898, -0.14679217)
+scale = Vector2(0.08852626, 0.08852627)
+texture = ExtResource("13_mkpwh")
+
+[node name="Label" type="Label" parent="credits/Storm" unique_id=1877061944]
+offset_left = -15.266054
+offset_top = -10.5688095
+offset_right = 727.73395
+offset_bottom = 231.43118
+scale = Vector2(0.115, 0.115)
+theme_override_fonts/font = ExtResource("10_8dnnj")
+theme_override_font_sizes/font_size = 42
+text = "Storm_Lunatic / Josh Smith 
+(they/he/she)
+
+- Artist and Animation
+"
+
+[node name="Moggy" type="Sprite2D" parent="credits" unique_id=1122774088]
+texture_filter = 1
+position = Vector2(-550, 320)
+scale = Vector2(6.8125, 6.8125)
+texture = ExtResource("8_5egv6")
+
+[node name="Sprite2D" type="Sprite2D" parent="credits/Moggy" unique_id=234485389]
+position = Vector2(-30.678898, -0.14679217)
+scale = Vector2(0.08852626, 0.08852627)
+texture = ExtResource("14_4nkqq")
+
+[node name="Label" type="Label" parent="credits/Moggy" unique_id=1675253934]
+offset_left = -13.211009
+offset_top = -10.568809
+offset_right = 408.789
+offset_bottom = 182.4312
+scale = Vector2(0.115, 0.115)
+theme_override_fonts/font = ExtResource("10_8dnnj")
+theme_override_font_sizes/font_size = 42
+text = "Meemog (he/they)
+
+- Programmer
+"
+
+[node name="TextureButton" type="TextureButton" parent="credits" unique_id=1559266996]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.5
+offset_top = 250.0
+offset_right = 214.5
+offset_bottom = 387.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_ehtkc")
+texture_pressed = SubResource("AtlasTexture_6dk6o")
+texture_hover = SubResource("AtlasTexture_jr6u5")
+stretch_mode = 6
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1531092934]
 copy_mode = 2
@@ -264,7 +428,8 @@ stream = ExtResource("4_ce3w2")
 autoplay = true
 bus = &"Music"
 
-[connection signal="pressed" from="Play/Button" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="Credits/Button" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="Settings/Button" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Quit/Button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="menu/Play/Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="menu/Credits/Button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="menu/Settings/Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="menu/Quit/Button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="credits/TextureButton" to="." method="_on_credits_exit_button_pressed"]
