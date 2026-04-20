@@ -1,13 +1,14 @@
 [gd_scene format=4 uid="uid://bl8tm0j2pj6v2"]
 
 [ext_resource type="Texture2D" uid="uid://ccx25kcuvrrqm" path="res://Assets/Environment/Ground_03.png" id="1_6444e"]
+[ext_resource type="Script" uid="uid://7tx2kdoner4t" path="res://Scenes/level_1.gd" id="1_yltlr"]
 [ext_resource type="Texture2D" uid="uid://cxy5mfu4marn3" path="res://Assets/Sprites/sprites2.png" id="2_6r07y"]
-[ext_resource type="Script" path="res://Scenes/darkness.gd" id="2_evi0p"]
+[ext_resource type="Script" uid="uid://brdaobtqsoq15" path="res://Scenes/darkness.gd" id="2_evi0p"]
 [ext_resource type="PackedScene" uid="uid://bqft8rq6f01ek" path="res://Scenes/rocky.tscn" id="3_lsmp6"]
 [ext_resource type="PackedScene" uid="uid://bvl36w8yrs2e4" path="res://Scenes/player.tscn" id="4_xrdnt"]
 [ext_resource type="PackedScene" uid="uid://08hgwmbgc78v" path="res://Scenes/ui.tscn" id="5_wrinw"]
-[ext_resource type="AudioStream" uid="uid://dma1bhqy1qv4i" path="res://Assets/Sounds/Music/ld2 2026-04-18 1534.mp3" id="6_evi0p"]
-[ext_resource type="PackedScene" path="res://Scenes/checkpoint.tscn" id="7_af3po"]
+[ext_resource type="PackedScene" uid="uid://ce83fb4wj172e" path="res://Scenes/end_cutscene.tscn" id="6_6ssoq"]
+[ext_resource type="PackedScene" uid="uid://vtbmeiagl1st" path="res://Scenes/checkpoint.tscn" id="7_af3po"]
 [ext_resource type="Texture2D" uid="uid://be8ncjy8a1mq0" path="res://Assets/Sprites/Foreground_ENV_Assets.png" id="7_lsmp6"]
 [ext_resource type="Texture2D" uid="uid://doth766doqm82" path="res://Assets/Sprites/Foreground_ENV_Assets_02.png" id="8_wrinw"]
 [ext_resource type="PackedScene" uid="uid://ce3erc66a0rxh" path="res://Scenes/stalagmite_1.tscn" id="9_chwpn"]
@@ -18,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://cpbbqpfk52qeq" path="res://Scenes/telescopeFish.tscn" id="16_8i23i"]
 [ext_resource type="Texture2D" uid="uid://c44wsk4aioofu" path="res://Assets/Sprites/AWASD Keys.png" id="17_8yhm2"]
 [ext_resource type="Texture2D" uid="uid://cxl5x8egfn3rs" path="res://Assets/Sprites/Space.png" id="18_pjppf"]
+[ext_resource type="AudioStream" uid="uid://daxjohkrndie6" path="res://Assets/Sounds/Music/Descending.wav" id="19_6ssoq"]
+[ext_resource type="AudioStream" uid="uid://d0phg3rxb3qim" path="res://Assets/Sounds/Music/Shadows the Dark.wav" id="21_imks0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b5ayd"]
 load_path = "res://.godot/imported/Ground Part 1.png-ffaf8fc7e2168f477849cfa52ffbdeea.ctex"
@@ -729,6 +732,9 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("8_wrinw")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjppf"]
+size = Vector2(20, 206.5)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gcla0"]
 atlas = ExtResource("17_8yhm2")
 region = Rect2(0, 32, 32, 32)
@@ -748,7 +754,14 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_u0op5"]
 atlas = ExtResource("18_pjppf")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ssoq"]
+size = Vector2(78, 20)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yltlr"]
+
 [node name="Level1" type="Node2D" unique_id=180775827]
+script = ExtResource("1_yltlr")
+music_fadeout_time = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=184461242]
 texture_filter = 1
@@ -784,11 +797,15 @@ texture = SubResource("CanvasTexture_6ioyp")
 script = ExtResource("2_evi0p")
 camera = NodePath("../Player")
 
-[node name="Rocky" parent="BackBufferCopy" unique_id=1916460702 instance=ExtResource("3_lsmp6")]
-position = Vector2(859, 5190)
+[node name="Rocky" parent="BackBufferCopy" unique_id=1916460702 node_paths=PackedStringArray("player", "music_player") instance=ExtResource("3_lsmp6")]
+position = Vector2(857, 5238)
+player = NodePath("../Player")
+max_alpha = 0.94
+end_cutscene = ExtResource("6_6ssoq")
+music_player = NodePath("../../DeepMusic")
 
 [node name="Player" parent="BackBufferCopy" unique_id=1356148789 node_paths=PackedStringArray("ui") instance=ExtResource("4_xrdnt")]
-position = Vector2(-498, -762)
+position = Vector2(-515, -743)
 collision_mask = 3
 soft_max_velocity = 200.0
 hard_max_velocity = 300.0
@@ -796,12 +813,6 @@ acceleration = 30.0
 max_alpha = 0.94
 sonar_refresh_time = 5.0
 ui = NodePath("../../UI")
-
-[node name="Level 1 Music" type="AudioStreamPlayer2D" parent="BackBufferCopy/Player" unique_id=464630682]
-position = Vector2(-115, 445)
-stream = ExtResource("6_evi0p")
-autoplay = true
-max_distance = 4096.0
 
 [node name="UI" parent="." unique_id=1549543088 instance=ExtResource("5_wrinw")]
 
@@ -2136,12 +2147,6 @@ position = Vector2(1629.0001, 3450)
 rotation = 3.167482
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="Stalagmite25" parent="Foreground ENV/Stalagmite 2" unique_id=1175963025 instance=ExtResource("10_chwpn")]
-z_index = -1
-position = Vector2(1589.0001, 3596.0002)
-rotation = 5.973113
-scale = Vector2(0.99999994, 0.99999994)
-
 [node name="Stalagmite23" parent="Foreground ENV/Stalagmite 2" unique_id=2096531954 instance=ExtResource("10_chwpn")]
 z_index = -1
 position = Vector2(-404.99988, 2153)
@@ -2370,12 +2375,6 @@ scale = Vector2(0.99999994, 0.99999994)
 z_index = -1
 position = Vector2(1629.0001, 3450)
 rotation = 3.167482
-scale = Vector2(0.99999994, 0.99999994)
-
-[node name="Stalagmite25" parent="Foreground ENV/Stalagmite 3" unique_id=1561156498 instance=ExtResource("10_chwpn")]
-z_index = -1
-position = Vector2(1589.0001, 3596.0002)
-rotation = 5.973113
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Stalagmite23" parent="Foreground ENV/Stalagmite 3" unique_id=1056196948 instance=ExtResource("10_chwpn")]
@@ -3169,7 +3168,7 @@ rotation = -2.1755872
 
 [node name="Bubbles5" parent="Bubbles" unique_id=1411623917 instance=ExtResource("13_oovug")]
 z_index = -1
-position = Vector2(984.00006, 4482)
+position = Vector2(1011.00006, 4487.0005)
 rotation = -1.577427
 scale = Vector2(1.25, 0.5)
 
@@ -3318,37 +3317,103 @@ rotation = -0.14315581
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_sda17")
 
-[node name="S Key" type="Sprite2D" parent="." unique_id=1373896304]
+[node name="Fish Colliders" type="Node" parent="." unique_id=1303997783]
+
+[node name="FishCollider" type="StaticBody2D" parent="Fish Colliders" unique_id=1967778015]
+position = Vector2(1112, 1694)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish Colliders/FishCollider" unique_id=1374919492]
+position = Vector2(-13, 0)
+shape = SubResource("RectangleShape2D_pjppf")
+
+[node name="FishCollider4" type="StaticBody2D" parent="Fish Colliders" unique_id=403577932]
+position = Vector2(689, 1084)
+rotation = -1.5707964
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish Colliders/FishCollider4" unique_id=1610517669]
+position = Vector2(-13, 0)
+shape = SubResource("RectangleShape2D_pjppf")
+
+[node name="FishCollider2" type="StaticBody2D" parent="Fish Colliders" unique_id=319636513]
+position = Vector2(255, 2304)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish Colliders/FishCollider2" unique_id=610642237]
+position = Vector2(-13, 0)
+shape = SubResource("RectangleShape2D_pjppf")
+
+[node name="FishCollider3" type="StaticBody2D" parent="Fish Colliders" unique_id=805628119]
+position = Vector2(854, 2461)
+rotation = -1.5707964
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish Colliders/FishCollider3" unique_id=1657625002]
+position = Vector2(-13, -26.75)
+shape = SubResource("RectangleShape2D_pjppf")
+
+[node name="Keys" type="Node" parent="." unique_id=145362142]
+
+[node name="S Key" type="Sprite2D" parent="Keys" unique_id=1373896304]
 z_index = -1
 texture_filter = 1
-position = Vector2(115, -680)
+position = Vector2(109, -292)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_gcla0")
 
-[node name="D Keys" type="Sprite2D" parent="." unique_id=1218639238]
+[node name="D Keys" type="Sprite2D" parent="Keys" unique_id=1218639238]
 z_index = 1
 texture_filter = 1
-position = Vector2(197, -680)
+position = Vector2(191, -292)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_1fal7")
 
-[node name="A Key" type="Sprite2D" parent="." unique_id=500051258]
+[node name="A Key" type="Sprite2D" parent="Keys" unique_id=500051258]
 z_index = -1
 texture_filter = 1
-position = Vector2(35, -680)
+position = Vector2(29, -292)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_vr6f4")
 
-[node name="W Key" type="Sprite2D" parent="." unique_id=2030117496]
+[node name="W Key" type="Sprite2D" parent="Keys" unique_id=2030117496]
 z_index = -1
 texture_filter = 1
-position = Vector2(115, -760)
+position = Vector2(109, -372)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_u5cqy")
 
-[node name="Space Bar" type="Sprite2D" parent="." unique_id=609261214]
+[node name="Space Bar" type="Sprite2D" parent="Keys" unique_id=609261214]
 z_index = -1
 texture_filter = 1
-position = Vector2(115, -622)
-scale = Vector2(1.25, 1.25)
+position = Vector2(109, -219)
+scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_u0op5")
+
+[node name="MusicTrigger" type="Area2D" parent="." unique_id=850095493]
+position = Vector2(-916, 3393)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicTrigger" unique_id=368572567]
+position = Vector2(3, 0)
+shape = SubResource("RectangleShape2D_6ssoq")
+
+[node name="FadeIn" type="Sprite2D" parent="." unique_id=2138794342]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+position = Vector2(201.50006, -310.49997)
+scale = Vector2(2181, 1583.0001)
+texture = SubResource("CanvasTexture_yltlr")
+
+[node name="ShallowMusic" type="AudioStreamPlayer" parent="." unique_id=1732917689]
+stream = ExtResource("19_6ssoq")
+bus = &"Music"
+
+[node name="DeepMusic" type="AudioStreamPlayer" parent="." unique_id=366309216]
+stream = ExtResource("21_imks0")
+bus = &"Music"
+
+[connection signal="body_entered" from="MusicTrigger" to="." method="_on_music_trigger_body_entered"]

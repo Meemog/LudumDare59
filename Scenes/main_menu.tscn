@@ -261,7 +261,6 @@ texture = ExtResource("5_cp0ys")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=826605142]
 stream = ExtResource("4_ce3w2")
-volume_db = -20.982
 autoplay = true
 bus = &"Music"
 

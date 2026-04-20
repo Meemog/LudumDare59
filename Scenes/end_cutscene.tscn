@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ce83fb4wj172e"]
+
+[ext_resource type="FontFile" uid="uid://dw6cwtjqyrd8o" path="res://Assets/Sprites/Super Starfish.ttf" id="1_0r5tv"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6jwe3"]
+
+[node name="EndCutscene" type="Node2D" unique_id=446603855]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1398221929]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(974, 530.49994)
+scale = Vector2(1978, 1079)
+texture = SubResource("CanvasTexture_6jwe3")
+
+[node name="Label" type="Label" parent="." unique_id=26859373]
+offset_left = 589.0
+offset_top = 378.0
+offset_right = 1397.0
+offset_bottom = 647.0
+theme_override_fonts/font = ExtResource("1_0r5tv")
+theme_override_font_sizes/font_size = 252
+text = "You win"
