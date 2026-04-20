@@ -7,12 +7,17 @@ extends Control
 var _mask: Node2D
 var _is_shrinking = false
 var _time_since_play: float = 0
+var _music_player: AudioStreamPlayer
+var _start_vol: float
 
 func _ready() -> void:
     _mask = $BackBufferCopy/mask
+    _music_player = $Music
+    _start_vol = _music_player.volume_db
 
 func _process(delta: float) -> void:
     _process_play(delta)
+    _process_fadeout()
     _process_circle()
 
 func _process_circle() -> void:
@@ -27,6 +32,11 @@ func _process_play(delta: float) -> void:
         _time_since_play += delta
         if _time_since_play > play_delay:
             get_tree().change_scene_to_packed(play_scene)
+
+func _process_fadeout() -> void:
+    if _is_shrinking:
+        _music_player.volume_db = _start_vol - (_time_since_play/play_delay) * (60-_start_vol)
+    
 
 func _on_play_button_pressed() -> void:
     if not _is_shrinking:

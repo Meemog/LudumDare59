@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bqft8rq6f01ek" path="res://Scenes/rocky.tscn" id="3_0f5h7"]
 [ext_resource type="PackedScene" uid="uid://bvl36w8yrs2e4" path="res://Scenes/player.tscn" id="3_iufkg"]
 [ext_resource type="PackedScene" uid="uid://08hgwmbgc78v" path="res://Scenes/ui.tscn" id="5_0f5h7"]
+[ext_resource type="PackedScene" uid="uid://cpbbqpfk52qeq" path="res://Scenes/telescopeFish.tscn" id="8_6xh1p"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b5ayd"]
 load_path = "res://.godot/imported/Ground Part 1.png-ffaf8fc7e2168f477849cfa52ffbdeea.ctex"
@@ -436,6 +437,9 @@ size = Vector2(390, 20)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qsjrb"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xh1p"]
+size = Vector2(20, 153)
+
 [node name="Node2D" type="Node2D" unique_id=528755197]
 
 [node name="Stalagmite1" parent="." unique_id=2081522720 instance=ExtResource("1_qsjrb")]
@@ -460,6 +464,10 @@ position = Vector2(58, -318)
 shape = SubResource("RectangleShape2D_b5ayd")
 debug_color = Color(0.95640117, 0, 0.540705, 0.41960785)
 
+[node name="TelescopeFish" parent="." unique_id=1011452603 node_paths=PackedStringArray("player") instance=ExtResource("8_6xh1p")]
+position = Vector2(651, 1530)
+player = NodePath("../BackBufferCopy/Player")
+
 [node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1201464146]
 position = Vector2(606, 317)
 copy_mode = 2
@@ -477,7 +485,7 @@ position = Vector2(821, 5184)
 max_alpha = 0.94
 
 [node name="Player" parent="BackBufferCopy" unique_id=1356148789 node_paths=PackedStringArray("ui") instance=ExtResource("3_iufkg")]
-position = Vector2(-499, -706)
+position = Vector2(-88, 949)
 collision_mask = 3
 soft_max_velocity = 200.0
 hard_max_velocity = 300.0
@@ -487,3 +495,12 @@ sonar_refresh_time = 3.3
 ui = NodePath("../../UI")
 
 [node name="UI" parent="." unique_id=1549543088 instance=ExtResource("5_0f5h7")]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1551655549]
+position = Vector2(1112, 1694)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1084046300]
+position = Vector2(-13, 0)
+shape = SubResource("RectangleShape2D_6xh1p")
