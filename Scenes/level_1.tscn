@@ -484,6 +484,7 @@ shape = SubResource("RectangleShape2D_6r07y")
 debug_color = Color(0.95640117, 0, 0.540705, 0.41960785)
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1365350426]
+visible = false
 position = Vector2(606, 317)
 copy_mode = 2
 
@@ -718,6 +719,21 @@ z_index = -1
 texture_filter = 1
 position = Vector2(1257.9998, 2309.9998)
 rotation = 2.2132094
+texture = SubResource("AtlasTexture_6r07y")
+
+[node name="Orange Coral7" type="Sprite2D" parent="Foreground ENV/Orange Coral" unique_id=52867932]
+z_index = -2
+texture_filter = 1
+position = Vector2(-32, 1589.9999)
+rotation = 0.004279852
+texture = SubResource("AtlasTexture_6r07y")
+
+[node name="Orange Coral8" type="Sprite2D" parent="Foreground ENV/Orange Coral" unique_id=1270891635]
+z_index = -2
+texture_filter = 1
+position = Vector2(6, 1591.9999)
+rotation = 0.004279852
+scale = Vector2(-1, 1)
 texture = SubResource("AtlasTexture_6r07y")
 
 [node name="Orange Coral5" type="Sprite2D" parent="Foreground ENV/Orange Coral" unique_id=1883350680]
