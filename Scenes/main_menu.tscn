@@ -314,7 +314,7 @@ theme_override_fonts/font = ExtResource("10_8dnnj")
 theme_override_font_sizes/font_size = 42
 text = "EvyCl (She/Her)
 
-- Environment/Ui Artist
+- Environment/Asset Artist
 "
 
 [node name="Lunar" type="Sprite2D" parent="credits" unique_id=1954259704]
