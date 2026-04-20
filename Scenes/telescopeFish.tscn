@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://h17py12wtmut" path="res://Assets/Sprites/sprites1.png" id="1_g348o"]
 [ext_resource type="Script" uid="uid://cc6qwj52rv3x" path="res://Scenes/telescope_fish.gd" id="1_vseh8"]
+[ext_resource type="AudioStream" uid="uid://3gkyeqyqjl1y" path="res://Assets/Sounds/SFX/Open Mouth Sound.wav" id="3_tujfd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vseh8"]
 atlas = ExtResource("1_g348o")
@@ -55,9 +56,6 @@ texture_filter = 1
 scale = Vector2(2.4, 2.4)
 sprite_frames = SubResource("SpriteFrames_k2ppr")
 
-[node name="AnimationTree" type="AnimationTree" parent="AnimatedSprite2D" unique_id=1340379175]
-root_node = NodePath("../..")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068919003]
 position = Vector2(-2, -2.3841858e-07)
 rotation = 1.3962634
@@ -68,5 +66,10 @@ shape = SubResource("CapsuleShape2D_tujfd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=556202742]
 rotation = 1.3962634
 shape = SubResource("CapsuleShape2D_vseh8")
+
+[node name="Mouth" type="AudioStreamPlayer" parent="." unique_id=522745210]
+stream = ExtResource("3_tujfd")
+volume_db = -10.947
+bus = &"SFX"
 
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
