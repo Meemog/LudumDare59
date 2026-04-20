@@ -13,11 +13,14 @@ var _is_swimming: bool = true
 var _can_move: bool = true
 var _time_since_killed: float = 0
 var _original_pos: Vector2
+var _mouth_sfx: AudioStreamPlayer
 
 func _ready() -> void:
     _sprite = $AnimatedSprite2D
     _original_pos = position
     _sprite.play()
+    
+    _mouth_sfx = $Mouth
 
 func _process(delta: float) -> void:
     _process_player_proximity()
@@ -64,6 +67,7 @@ func _process_player_proximity() -> void:
     if distance_to_player < monch_proximity and _is_swimming:
         _is_swimming = false
         _sprite.play("open_mouth")
+        _mouth_sfx.play()
     elif distance_to_player > monch_proximity and not _is_swimming:
         _is_swimming = true
         _sprite.play("default")

@@ -1,11 +1,22 @@
 [gd_scene format=3 uid="uid://rm0e0lprcjn5"]
 
 [ext_resource type="Script" uid="uid://bmypwq0loc0mr" path="res://Scenes/main_menu.gd" id="1_28flt"]
-[ext_resource type="PackedScene" uid="uid://cdujn52hqdfwn" path="res://Scenes/TestScene.tscn" id="2_48xlc"]
+[ext_resource type="PackedScene" uid="uid://btduwwxatsmx2" path="res://Scenes/cutscene.tscn" id="2_16hvj"]
 [ext_resource type="Texture2D" uid="uid://ctombkxtxve2b" path="res://Assets/Sprites/GameJam256_menu.png" id="3_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://c3fhpeux85jtf" path="res://Assets/Sprites/Title_Screenbg.png" id="3_16hvj"]
 [ext_resource type="AudioStream" uid="uid://butri4wivmvw4" path="res://Assets/Sounds/Music/Prepare to Dive.wav" id="4_ce3w2"]
 [ext_resource type="Shader" uid="uid://c5k7x8lnl0mk2" path="res://Scenes/vision.gdshader" id="4_opfnp"]
+[ext_resource type="Texture2D" uid="uid://crfnm33et8tx" path="res://Assets/Sprites/bubble.png" id="4_vr1f0"]
 [ext_resource type="Texture2D" uid="uid://drdnfulfobmle" path="res://Assets/Sprites/VisionCone.png" id="5_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://bj61dk7sdmskh" path="res://Assets/Sprites/Title_Screen_fg.png" id="5_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://cfc7nvcp76034" path="res://Assets/Sprites/Logo.png" id="10_5egv6"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vtepg"]
+lifetime_randomness = 0.09
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+gravity = Vector3(0, -98, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ce3w2"]
 atlas = ExtResource("3_1ehe0")
@@ -68,7 +79,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_28flt")
-play_scene = ExtResource("2_48xlc")
+play_scene = ExtResource("2_16hvj")
+
+[node name="TitleScreenbg" type="Sprite2D" parent="." unique_id=2045223877]
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(7.4, 7.4)
+texture = ExtResource("3_16hvj")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1903933667]
+position = Vector2(1811, 1080)
+texture = ExtResource("4_vr1f0")
+lifetime = 4.5
+process_material = SubResource("ParticleProcessMaterial_vtepg")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=337434662]
+position = Vector2(516, 1050)
+texture = ExtResource("4_vr1f0")
+lifetime = 4.5
+process_material = SubResource("ParticleProcessMaterial_vtepg")
+
+[node name="TitleScreenFg" type="Sprite2D" parent="." unique_id=2138469312]
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(7.4, 7.4)
+texture = ExtResource("5_t1dhk")
 
 [node name="Play" type="Control" parent="." unique_id=241402080]
 layout_mode = 1
@@ -78,9 +113,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.5
-offset_top = -77.0
+offset_top = -136.0
 offset_right = 170.5
-offset_bottom = 77.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -112,9 +147,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.0
-offset_top = 28.0
+offset_top = -31.0
 offset_right = 171.0
-offset_bottom = 182.0
+offset_bottom = 123.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -145,9 +180,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.5
-offset_top = 133.0
+offset_top = 74.0
 offset_right = 170.5
-offset_bottom = 287.0
+offset_bottom = 228.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -178,9 +213,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.5
-offset_top = 238.0
+offset_top = 179.0
 offset_right = 170.5
-offset_bottom = 392.0
+offset_bottom = 333.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -202,6 +237,11 @@ texture_normal = SubResource("AtlasTexture_t1dhk")
 texture_pressed = SubResource("AtlasTexture_5egv6")
 texture_hover = SubResource("AtlasTexture_vtepg")
 stretch_mode = 6
+
+[node name="Logo" type="Sprite2D" parent="." unique_id=1667517712]
+position = Vector2(960, 241)
+scale = Vector2(0.8914729, 0.8914729)
+texture = ExtResource("10_5egv6")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1531092934]
 copy_mode = 2

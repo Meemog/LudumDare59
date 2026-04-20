@@ -47,6 +47,7 @@ var _particles: GPUParticles2D
 var _is_dying: bool = false
 var _time_since_died: float = 0
 var _can_move: bool = true
+var _death_sfx: AudioStreamPlayer
 
 # Gameplay
 var _checkpoint_pos: Vector2
@@ -66,7 +67,8 @@ func _ready() -> void:
     _sonar_dark = $PersonalSonar/dark
     _sonar_cone.scale = Vector2.ZERO
     _num_sonars = _MAX_SONARS
-    _sonar_sfx = $AudioStreamPlayer
+    _sonar_sfx = $SonarPing
+    _death_sfx = $DeathBubbles
     
     _checkpoint_pos = position
     
@@ -85,9 +87,7 @@ func _physics_process(delta: float) -> void:
         move_and_slide()
 
 func _input(event: InputEvent) -> void:
-    if event.is_action_pressed("kill"):
-        kill()
-    elif event.is_action_pressed("personal_sonar") and _can_move:
+    if event.is_action_pressed("personal_sonar") and _can_move:
         _sonar()
 
 func _process_respawn(delta: float) -> void:
@@ -193,6 +193,7 @@ func trigger_checkpoint() -> void:
 func kill() -> void:
     _player_sprite.visible = false
     _particles.emitting = true
+    _death_sfx.play()
     _can_move = false
     _time_since_died = 0
     _is_dying = true
