@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://btduwwxatsmx2"]
+
+[ext_resource type="Script" uid="uid://c0o1e4hat37hg" path="res://cutscene.gd" id="1_vlwh7"]
+[ext_resource type="PackedScene" uid="uid://bl8tm0j2pj6v2" path="res://Scenes/level_1.tscn" id="2_iy4n7"]
+[ext_resource type="SpriteFrames" uid="uid://bpu0jiivd2egx" path="res://Assets/Sprites/player_frames.tres" id="2_jd5kf"]
+[ext_resource type="FontFile" uid="uid://dw6cwtjqyrd8o" path="res://Assets/Sprites/Super Starfish.ttf" id="3_jd5kf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_iy4n7"]
+
+[node name="Cutscene" type="Node2D" unique_id=516847874]
+script = ExtResource("1_vlwh7")
+text = "I can't find Rocky!
+ 
+I'm sure they're here
+somewhere"
+start_delay = 0.5
+play_scene = ExtResource("2_iy4n7")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2137865305]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(955.99994, 546.50006)
+scale = Vector2(2023.9999, 1139)
+texture = SubResource("CanvasTexture_iy4n7")
+
+[node name="Splash" type="AnimatedSprite2D" parent="." unique_id=1025158897]
+texture_filter = 1
+position = Vector2(552, 519)
+scale = Vector2(9.105, 9.105)
+sprite_frames = ExtResource("2_jd5kf")
+animation = &"swim"
+
+[node name="Label" type="Label" parent="." unique_id=862577691]
+offset_left = 853.0
+offset_top = 316.0
+offset_right = 1906.0
+offset_bottom = 906.0
+theme_override_fonts/font = ExtResource("3_jd5kf")
+theme_override_font_sizes/font_size = 105
