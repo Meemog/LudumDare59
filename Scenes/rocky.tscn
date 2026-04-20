@@ -1,98 +1,15 @@
 [gd_scene format=3 uid="uid://bqft8rq6f01ek"]
 
 [ext_resource type="Script" uid="uid://bplrxrf24uu0w" path="res://Scenes/rocky.gd" id="1_bnukg"]
-[ext_resource type="Texture2D" uid="uid://h17py12wtmut" path="res://Assets/Sprites/sprites1.png" id="1_p2un5"]
 [ext_resource type="Shader" uid="uid://c5k7x8lnl0mk2" path="res://Scenes/vision.gdshader" id="2_q68yl"]
 [ext_resource type="Texture2D" uid="uid://drdnfulfobmle" path="res://Assets/Sprites/VisionCone.png" id="3_ewiwh"]
+[ext_resource type="SpriteFrames" uid="uid://vgj54wi2214p" path="res://Assets/Sprites/rocky_frames.tres" id="4_q68yl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q68yl"]
 shader = ExtResource("2_q68yl")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yq7nf"]
 shader = ExtResource("2_q68yl")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bnukg"]
-atlas = ExtResource("1_p2un5")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vn4cq"]
-atlas = ExtResource("1_p2un5")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q68yl"]
-atlas = ExtResource("1_p2un5")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ewiwh"]
-atlas = ExtResource("1_p2un5")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yq7nf"]
-atlas = ExtResource("1_p2un5")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4a1w1"]
-atlas = ExtResource("1_p2un5")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ksx8a"]
-atlas = ExtResource("1_p2un5")
-region = Rect2(160, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptj5n"]
-atlas = ExtResource("1_p2un5")
-region = Rect2(128, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tpqr8"]
-atlas = ExtResource("1_p2un5")
-region = Rect2(160, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3dkut"]
-atlas = ExtResource("1_p2un5")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4a1w1"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bnukg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vn4cq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q68yl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ewiwh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yq7nf")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4a1w1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ksx8a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ptj5n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tpqr8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3dkut")
-}],
-"loop": true,
-"name": &"happy",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4a1w1"]
 size = Vector2(54, 38)
@@ -121,7 +38,7 @@ texture = ExtResource("3_ewiwh")
 z_index = 2
 texture_filter = 1
 scale = Vector2(1.875, 1.875)
-sprite_frames = SubResource("SpriteFrames_4a1w1")
+sprite_frames = ExtResource("4_q68yl")
 frame_progress = 0.08778644
 
 [node name="Area2D" type="Area2D" parent="." unique_id=268976186]
