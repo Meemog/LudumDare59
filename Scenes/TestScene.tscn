@@ -1,6 +1,8 @@
 [gd_scene format=4 uid="uid://cdujn52hqdfwn"]
 
 [ext_resource type="Texture2D" uid="uid://ccx25kcuvrrqm" path="res://Assets/Environment/Ground_03.png" id="1_5lt6y"]
+[ext_resource type="PackedScene" uid="uid://ce3erc66a0rxh" path="res://Scenes/stalagmite_1.tscn" id="1_qsjrb"]
+[ext_resource type="PackedScene" uid="uid://76ip7kaxkb50" path="res://Scenes/stalagmite_2.tscn" id="2_c264a"]
 [ext_resource type="Script" uid="uid://brdaobtqsoq15" path="res://Scenes/darkness.gd" id="2_iufkg"]
 [ext_resource type="PackedScene" uid="uid://bqft8rq6f01ek" path="res://Scenes/rocky.tscn" id="3_0f5h7"]
 [ext_resource type="PackedScene" uid="uid://bvl36w8yrs2e4" path="res://Scenes/player.tscn" id="3_iufkg"]
@@ -436,6 +438,14 @@ size = Vector2(390, 20)
 
 [node name="Node2D" type="Node2D" unique_id=528755197]
 
+[node name="Stalagmite1" parent="." unique_id=2081522720 instance=ExtResource("1_qsjrb")]
+position = Vector2(359, -373)
+rotation = -1.5707964
+
+[node name="Stalagmite2" parent="." unique_id=155988800 instance=ExtResource("2_c264a")]
+position = Vector2(-104, -313)
+rotation = 1.5707964
+
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1335400893]
 texture_filter = 1
 scale = Vector2(2, 2)
@@ -464,9 +474,10 @@ camera = NodePath("../Player")
 
 [node name="Rocky" parent="BackBufferCopy" unique_id=1916460702 instance=ExtResource("3_0f5h7")]
 position = Vector2(821, 5184)
+max_alpha = 0.94
 
 [node name="Player" parent="BackBufferCopy" unique_id=1356148789 node_paths=PackedStringArray("ui") instance=ExtResource("3_iufkg")]
-position = Vector2(-491, -762)
+position = Vector2(-499, -706)
 collision_mask = 3
 soft_max_velocity = 200.0
 hard_max_velocity = 300.0

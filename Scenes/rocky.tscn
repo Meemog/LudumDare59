@@ -5,6 +5,9 @@
 [ext_resource type="Shader" uid="uid://c5k7x8lnl0mk2" path="res://Scenes/vision.gdshader" id="2_q68yl"]
 [ext_resource type="Texture2D" uid="uid://drdnfulfobmle" path="res://Assets/Sprites/VisionCone.png" id="3_ewiwh"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q68yl"]
+shader = ExtResource("2_q68yl")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yq7nf"]
 shader = ExtResource("2_q68yl")
 
@@ -96,6 +99,16 @@ size = Vector2(53, 48)
 
 [node name="Rocky" type="Node2D" unique_id=1916460702]
 script = ExtResource("1_bnukg")
+
+[node name="PersonalSonar" type="Node2D" parent="." unique_id=524864251]
+
+[node name="mask" type="Sprite2D" parent="PersonalSonar" unique_id=1778561099]
+material = SubResource("ShaderMaterial_q68yl")
+texture = ExtResource("3_ewiwh")
+
+[node name="dark" type="Sprite2D" parent="PersonalSonar" unique_id=2084830044]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("3_ewiwh")
 
 [node name="vision_cone" type="Sprite2D" parent="." unique_id=424946615]
 z_index = 1
