@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://08hgwmbgc78v" path="res://Scenes/ui.tscn" id="5_wrinw"]
 [ext_resource type="AudioStream" uid="uid://dma1bhqy1qv4i" path="res://Assets/Sounds/Music/ld2 2026-04-18 1534.mp3" id="6_evi0p"]
 [ext_resource type="Texture2D" uid="uid://be8ncjy8a1mq0" path="res://Assets/Sprites/Foreground_ENV_Assets.png" id="7_lsmp6"]
+[ext_resource type="Texture2D" uid="uid://doth766doqm82" path="res://Assets/Sprites/Foreground_ENV_Assets_02.png" id="8_wrinw"]
+[ext_resource type="PackedScene" uid="uid://ce3erc66a0rxh" path="res://Scenes/stalagmite_1.tscn" id="9_chwpn"]
+[ext_resource type="PackedScene" uid="uid://76ip7kaxkb50" path="res://Scenes/stalagmite_2.tscn" id="10_chwpn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b5ayd"]
 load_path = "res://.godot/imported/Ground Part 1.png-ffaf8fc7e2168f477849cfa52ffbdeea.ctex"
@@ -436,6 +439,10 @@ size = Vector2(390, 20)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_6ioyp"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_chwpn"]
+atlas = ExtResource("7_lsmp6")
+region = Rect2(0, 96, 64, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrdnt"]
 atlas = ExtResource("7_lsmp6")
 region = Rect2(128, 192, 64, 64)
@@ -444,15 +451,19 @@ region = Rect2(128, 192, 64, 64)
 atlas = ExtResource("7_lsmp6")
 region = Rect2(0, 128, 96, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_chwpn"]
-atlas = ExtResource("7_lsmp6")
-region = Rect2(0, 96, 64, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_af3po"]
 atlas = ExtResource("7_lsmp6")
 region = Rect2(64, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lsmp6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy8f0"]
+atlas = ExtResource("8_wrinw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r07y"]
+atlas = ExtResource("7_lsmp6")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ioyp"]
 atlas = ExtResource("7_lsmp6")
 region = Rect2(32, 0, 32, 32)
 
@@ -487,14 +498,15 @@ camera = NodePath("../Player")
 [node name="Rocky" parent="BackBufferCopy" unique_id=1916460702 instance=ExtResource("3_lsmp6")]
 position = Vector2(791, 5190)
 
-[node name="Player" parent="BackBufferCopy" unique_id=1356148789 instance=ExtResource("4_xrdnt")]
+[node name="Player" parent="BackBufferCopy" unique_id=1356148789 node_paths=PackedStringArray("ui") instance=ExtResource("4_xrdnt")]
 position = Vector2(-491, -762)
 collision_mask = 3
 soft_max_velocity = 200.0
 hard_max_velocity = 300.0
 acceleration = 30.0
 max_alpha = 0.94
-sonar_refresh_time = 3.3
+sonar_refresh_time = 5.0
+ui = NodePath("../../UI")
 
 [node name="Level 1 Music" type="AudioStreamPlayer2D" parent="BackBufferCopy/Player" unique_id=464630682]
 position = Vector2(-115, 445)
@@ -504,29 +516,103 @@ max_distance = 4096.0
 
 [node name="UI" parent="." unique_id=1549543088 instance=ExtResource("5_wrinw")]
 
-[node name="Broken Submarine Tail" type="Sprite2D" parent="." unique_id=976470028]
+[node name="Foreground ENV" type="Node" parent="." unique_id=1458612043]
+
+[node name="Bones" type="Node" parent="Foreground ENV" unique_id=1298238741]
+
+[node name="Bones" type="Sprite2D" parent="Foreground ENV/Bones" unique_id=1904239816]
+z_index = -1
+texture_filter = 1
+position = Vector2(-17, 1582)
+scale = Vector2(1.5, 1.5)
+texture = SubResource("AtlasTexture_chwpn")
+
+[node name="Bones2" type="Sprite2D" parent="Foreground ENV/Bones" unique_id=1119683862]
+z_index = -1
+texture_filter = 1
+position = Vector2(-717, 2702)
+scale = Vector2(1.5, 1.5)
+texture = SubResource("AtlasTexture_chwpn")
+
+[node name="Bones3" type="Sprite2D" parent="Foreground ENV/Bones" unique_id=706848216]
+z_index = -1
+texture_filter = 1
+position = Vector2(403, 463)
+scale = Vector2(1.5, 1.5)
+texture = SubResource("AtlasTexture_chwpn")
+
+[node name="Broken Submarine Tail" type="Sprite2D" parent="Foreground ENV" unique_id=976470028]
 z_index = 1
 texture_filter = 1
 position = Vector2(1339, 5508)
 texture = SubResource("AtlasTexture_xrdnt")
 
-[node name="Broken Submarine Head" type="Sprite2D" parent="." unique_id=273180789]
+[node name="Broken Submarine Head" type="Sprite2D" parent="Foreground ENV" unique_id=273180789]
 z_index = 1
 texture_filter = 1
 position = Vector2(1532, 5504)
 rotation = -0.42538062
 texture = SubResource("AtlasTexture_wrinw")
 
-[node name="Bones" type="Sprite2D" parent="." unique_id=1904239816]
-position = Vector2(-18, 1583.0001)
-scale = Vector2(1.5, 1.5)
-texture = SubResource("AtlasTexture_chwpn")
+[node name="Seaweed" type="Node" parent="Foreground ENV" unique_id=2065971229]
 
-[node name="Bones2" type="Sprite2D" parent="Bones" unique_id=1119683862]
-position = Vector2(-466.66666, 744.6666)
-texture = SubResource("AtlasTexture_chwpn")
+[node name="Seaweeds5" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=1612926441]
+z_index = -3
+texture_filter = 1
+position = Vector2(226.3194, 1396.4806)
+rotation = 1.8462613
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_af3po")
 
-[node name="Seaweeds6" type="Sprite2D" parent="." unique_id=1912671599]
+[node name="Seaweeds18" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=280618023]
+z_index = -3
+texture_filter = 1
+position = Vector2(2020.0001, 901)
+rotation = 0.4202659
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_af3po")
+
+[node name="Seaweeds19" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=774746249]
+z_index = -3
+texture_filter = 1
+position = Vector2(2129, 912.0001)
+rotation = -0.3474514
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_af3po")
+
+[node name="Seaweeds8" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=509450378]
+z_index = -3
+texture_filter = 1
+position = Vector2(196.58762, 1520.0526)
+rotation = 1.8462613
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_af3po")
+
+[node name="Seaweeds10" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=1813046470]
+z_index = -3
+texture_filter = 1
+position = Vector2(159.72208, 1646.804)
+rotation = 1.8462613
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_af3po")
+
+[node name="Seaweeds12" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=269382774]
+z_index = -3
+texture_filter = 1
+position = Vector2(125.05307, 1773.1372)
+rotation = 1.8462613
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_af3po")
+
+[node name="Seaweeds13" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=2010531672]
+z_index = -3
+texture_filter = 1
+position = Vector2(105.44885, 1835.1426)
+rotation = 1.8462613
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_af3po")
+
+[node name="Seaweeds6" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=1912671599]
 z_index = -3
 texture_filter = 1
 position = Vector2(1187.2621, -151.01822)
@@ -534,7 +620,7 @@ rotation = 0.014505487
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_af3po")
 
-[node name="Seaweeds7" type="Sprite2D" parent="." unique_id=856773979]
+[node name="Seaweeds7" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=856773979]
 z_index = -3
 texture_filter = 1
 position = Vector2(1250.2266, -148.10461)
@@ -542,7 +628,7 @@ rotation = 0.014505487
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_af3po")
 
-[node name="Seaweeds8" type="Sprite2D" parent="." unique_id=245574567]
+[node name="Seaweeds9" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=245574567]
 z_index = -3
 texture_filter = 1
 position = Vector2(1377.2856, -151.26196)
@@ -550,7 +636,7 @@ rotation = 0.014505487
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_af3po")
 
-[node name="Seaweeds10" type="Sprite2D" parent="." unique_id=461406884]
+[node name="Seaweeds11" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=461406884]
 z_index = -3
 texture_filter = 1
 position = Vector2(1509.2573, -148.34741)
@@ -558,7 +644,7 @@ rotation = 0.014505487
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_af3po")
 
-[node name="Seaweeds12" type="Sprite2D" parent="." unique_id=254942453]
+[node name="Seaweeds14" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=254942453]
 z_index = -3
 texture_filter = 1
 position = Vector2(1640.258, -147.44714)
@@ -566,7 +652,7 @@ rotation = 0.014505487
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_af3po")
 
-[node name="Seaweeds13" type="Sprite2D" parent="." unique_id=1240849785]
+[node name="Seaweeds15" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=1240849785]
 z_index = -3
 texture_filter = 1
 position = Vector2(1705.2222, -144.50455)
@@ -574,7 +660,7 @@ rotation = 0.014505487
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_af3po")
 
-[node name="Seaweeds2" type="Sprite2D" parent="." unique_id=203845934]
+[node name="Seaweeds2" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=203845934]
 z_index = -3
 texture_filter = 1
 position = Vector2(-70, -55)
@@ -582,7 +668,7 @@ rotation = 0.014505487
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_af3po")
 
-[node name="Seaweeds3" type="Sprite2D" parent="." unique_id=537700387]
+[node name="Seaweeds3" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=537700387]
 z_index = -3
 texture_filter = 1
 position = Vector2(298, -19)
@@ -590,43 +676,7 @@ rotation = 0.7801668
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_af3po")
 
-[node name="Seaweeds3" type="Sprite2D" parent="Seaweeds3" unique_id=1084090311]
-z_index = -3
-texture_filter = 1
-position = Vector2(619.5, -48)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Seaweeds5" type="Sprite2D" parent="Seaweeds3" unique_id=827424864]
-z_index = -3
-texture_filter = 1
-position = Vector2(651, -47)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Seaweeds8" type="Sprite2D" parent="Seaweeds3" unique_id=1670535820]
-z_index = -3
-texture_filter = 1
-position = Vector2(714.5, -49.5)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Seaweeds10" type="Sprite2D" parent="Seaweeds3" unique_id=661549132]
-z_index = -3
-texture_filter = 1
-position = Vector2(780.5, -49)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Seaweeds12" type="Sprite2D" parent="Seaweeds3" unique_id=477521864]
-z_index = -3
-texture_filter = 1
-position = Vector2(846, -49.5)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Seaweeds13" type="Sprite2D" parent="Seaweeds3" unique_id=525092030]
-z_index = -3
-texture_filter = 1
-position = Vector2(878.5, -48.5)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Seaweeds5" type="Sprite2D" parent="." unique_id=773100062]
+[node name="Seaweeds16" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=773100062]
 z_index = -3
 texture_filter = 1
 position = Vector2(490, 118)
@@ -634,57 +684,377 @@ rotation = 1.8462613
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_af3po")
 
-[node name="Seaweeds5" type="Sprite2D" parent="Seaweeds5" unique_id=1612926441]
-z_index = -3
-texture_filter = 1
-position = Vector2(651, -47)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Seaweeds8" type="Sprite2D" parent="Seaweeds5" unique_id=509450378]
-z_index = -3
-texture_filter = 1
-position = Vector2(714.5, -49.5)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Seaweeds10" type="Sprite2D" parent="Seaweeds5" unique_id=1813046470]
-z_index = -3
-texture_filter = 1
-position = Vector2(780.5, -49)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Seaweeds12" type="Sprite2D" parent="Seaweeds5" unique_id=269382774]
-z_index = -3
-texture_filter = 1
-position = Vector2(846, -49.5)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Seaweeds13" type="Sprite2D" parent="Seaweeds5" unique_id=2010531672]
-z_index = -3
-texture_filter = 1
-position = Vector2(878.5, -48.5)
-texture = SubResource("AtlasTexture_af3po")
-
-[node name="Purple Coral2" type="Sprite2D" parent="." unique_id=1073899166]
-z_index = -2
-texture_filter = 1
-position = Vector2(961, 54.99997)
-rotation = -0.5057996
-texture = SubResource("AtlasTexture_lsmp6")
-
-[node name="Seaweeds4" type="Sprite2D" parent="." unique_id=1309931524]
+[node name="Seaweeds4" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=1309931524]
 z_index = -3
 texture_filter = 1
 position = Vector2(462, 453)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_af3po")
 
-[node name="Bones3" type="Sprite2D" parent="Seaweeds4" unique_id=706848216]
-position = Vector2(-30, 3.999939)
-scale = Vector2(0.75, 0.75)
-texture = SubResource("AtlasTexture_chwpn")
-
-[node name="Seaweeds5" type="Sprite2D" parent="Seaweeds4" unique_id=1535384869]
+[node name="Seaweeds17" type="Sprite2D" parent="Foreground ENV/Seaweed" unique_id=1535384869]
 z_index = -3
 texture_filter = 1
-position = Vector2(-64, 1.5)
+position = Vector2(334, 456.00006)
+scale = Vector2(1.9999999, 1.9999999)
 texture = SubResource("AtlasTexture_af3po")
+
+[node name="Deep Sea Coral" type="Sprite2D" parent="Foreground ENV" unique_id=1176556686]
+z_index = -1
+texture_filter = 1
+position = Vector2(-922.00006, 3699)
+rotation = 0.3102244
+texture = SubResource("AtlasTexture_uy8f0")
+
+[node name="Orange Coral" type="Node" parent="Foreground ENV" unique_id=414602788]
+
+[node name="Orange Coral" type="Sprite2D" parent="Foreground ENV/Orange Coral" unique_id=995973657]
+z_index = -1
+texture_filter = 1
+position = Vector2(1496, 2454)
+texture = SubResource("AtlasTexture_6r07y")
+
+[node name="Orange Coral4" type="Sprite2D" parent="Foreground ENV/Orange Coral" unique_id=874381436]
+z_index = -1
+texture_filter = 1
+position = Vector2(1257.9998, 2309.9998)
+rotation = 2.2132094
+texture = SubResource("AtlasTexture_6r07y")
+
+[node name="Orange Coral5" type="Sprite2D" parent="Foreground ENV/Orange Coral" unique_id=1883350680]
+z_index = -1
+texture_filter = 1
+position = Vector2(1556, 2317)
+rotation = 4.249681
+texture = SubResource("AtlasTexture_6r07y")
+
+[node name="Orange Coral6" type="Sprite2D" parent="Foreground ENV/Orange Coral" unique_id=1362699501]
+z_index = -1
+texture_filter = 1
+position = Vector2(1263, 2430.0002)
+rotation = 6.92031
+texture = SubResource("AtlasTexture_6r07y")
+
+[node name="Orange Coral2" type="Sprite2D" parent="Foreground ENV/Orange Coral" unique_id=507731264]
+z_index = -1
+texture_filter = 1
+position = Vector2(2059, 922)
+rotation = -3.1415927
+scale = Vector2(1, -1)
+texture = SubResource("AtlasTexture_6r07y")
+
+[node name="Orange Coral3" type="Sprite2D" parent="Foreground ENV/Orange Coral" unique_id=1567293517]
+z_index = -1
+texture_filter = 1
+position = Vector2(2084, 924)
+texture = SubResource("AtlasTexture_6r07y")
+
+[node name="Stalagmite" type="Node" parent="Foreground ENV" unique_id=1995006648]
+
+[node name="Stalagmite1" parent="Foreground ENV/Stalagmite" unique_id=2081522720 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(776, 141)
+rotation = -0.5372471
+
+[node name="Stalagmite22" parent="Foreground ENV/Stalagmite" unique_id=1990546221 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1220, 399)
+rotation = 2.6035757
+
+[node name="Stalagmite23" parent="Foreground ENV/Stalagmite" unique_id=381963068 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1207.0001, 644.99994)
+rotation = 5.755224
+
+[node name="Stalagmite2" parent="Foreground ENV/Stalagmite" unique_id=580567970 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(812, 121)
+rotation = -0.5372471
+
+[node name="Stalagmite3" parent="Foreground ENV/Stalagmite" unique_id=1135918612 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(841, 109)
+rotation = 2.6043456
+scale = Vector2(1, -1)
+
+[node name="Stalagmite4" parent="Foreground ENV/Stalagmite" unique_id=1232993067 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(896, 78)
+rotation = -0.5372471
+
+[node name="Stalagmite5" parent="Foreground ENV/Stalagmite" unique_id=59650949 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(939, 45)
+rotation = -0.84210145
+
+[node name="Stalagmite6" parent="Foreground ENV/Stalagmite" unique_id=678377709 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(961, 26)
+rotation = 2.2994912
+scale = Vector2(1, -1)
+
+[node name="Stalagmite7" parent="Foreground ENV/Stalagmite" unique_id=1944193140 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(992, -8.0000305)
+rotation = 2.2994912
+scale = Vector2(1, -1)
+
+[node name="Stalagmite8" parent="Foreground ENV/Stalagmite" unique_id=1192388170 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1026, -44)
+rotation = 2.4180996
+scale = Vector2(1, -1)
+
+[node name="Stalagmite9" parent="Foreground ENV/Stalagmite" unique_id=1311250810 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1060, -73.00003)
+rotation = 2.4180996
+scale = Vector2(1, -1)
+
+[node name="Stalagmite10" parent="Foreground ENV/Stalagmite" unique_id=343391305 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1110, -122.00003)
+rotation = -0.7234931
+
+[node name="Stalagmite11" parent="Foreground ENV/Stalagmite" unique_id=1307642825 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1527.9999, 2434)
+rotation = -0.7234931
+
+[node name="Stalagmite12" parent="Foreground ENV/Stalagmite" unique_id=1897223247 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1549.0001, 2394)
+rotation = -1.3641634
+
+[node name="Stalagmite13" parent="Foreground ENV/Stalagmite" unique_id=1966804330 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1543.0001, 2341)
+rotation = -1.5472679
+
+[node name="Stalagmite14" parent="Foreground ENV/Stalagmite" unique_id=137723390 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1520, 2295)
+rotation = -2.338156
+
+[node name="Stalagmite15" parent="Foreground ENV/Stalagmite" unique_id=387215238 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1500.9998, 2272)
+rotation = -2.6013682
+scale = Vector2(-1, 1)
+
+[node name="Stalagmite16" parent="Foreground ENV/Stalagmite" unique_id=1148009392 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1444.0001, 2265)
+rotation = -3.1334698
+scale = Vector2(-1, 1)
+
+[node name="Stalagmite17" parent="Foreground ENV/Stalagmite" unique_id=337676247 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1372, 2266)
+rotation = -3.1334698
+scale = Vector2(-1, 1)
+
+[node name="Stalagmite18" parent="Foreground ENV/Stalagmite" unique_id=450114614 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1309.0001, 2287)
+rotation = -3.9485354
+scale = Vector2(-1, 1)
+
+[node name="Stalagmite19" parent="Foreground ENV/Stalagmite" unique_id=1852935847 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1273.0001, 2334)
+rotation = -4.658984
+scale = Vector2(-1, 1)
+
+[node name="Stalagmite21" parent="Foreground ENV/Stalagmite" unique_id=213511976 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1272, 2379)
+rotation = -4.658984
+scale = Vector2(-1, 1)
+
+[node name="Stalagmite20" parent="Foreground ENV/Stalagmite" unique_id=1524672561 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1312.0001, 2453)
+rotation = -5.686616
+
+[node name="Stalagmite24" parent="Foreground ENV/Stalagmite" unique_id=2051319465 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(778.99994, 674)
+rotation = -3.9402077
+
+[node name="Stalagmite26" parent="Foreground ENV/Stalagmite" unique_id=530567283 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1425, 626)
+rotation = -6.306936
+
+[node name="Stalagmite27" parent="Foreground ENV/Stalagmite" unique_id=648000 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(1491.9999, 379)
+rotation = -3.231074
+
+[node name="Stalagmite25" parent="Foreground ENV/Stalagmite" unique_id=1987280157 instance=ExtResource("9_chwpn")]
+z_index = -1
+texture_filter = 1
+position = Vector2(862, 890.00006)
+rotation = -7.062602
+
+[node name="Stalagmite 2" type="Node" parent="Foreground ENV" unique_id=1628183919]
+
+[node name="Stalagmite2" parent="Foreground ENV/Stalagmite 2" unique_id=1510909102 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(574, 1153.9999)
+rotation = 2.6856544
+
+[node name="Stalagmite16" parent="Foreground ENV/Stalagmite 2" unique_id=1237367275 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(973, 521.9999)
+rotation = 2.6856544
+
+[node name="Stalagmite17" parent="Foreground ENV/Stalagmite 2" unique_id=1229606472 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(1003.00006, 751.00006)
+rotation = 5.5909286
+
+[node name="Stalagmite3" parent="Foreground ENV/Stalagmite 2" unique_id=1463671385 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(524, 1176.9999)
+rotation = 2.6856544
+
+[node name="Stalagmite4" parent="Foreground ENV/Stalagmite 2" unique_id=100900560 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(488.99997, 1196)
+rotation = 2.6856544
+
+[node name="Stalagmite5" parent="Foreground ENV/Stalagmite 2" unique_id=14220611 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(443.99997, 1219)
+rotation = 2.6856544
+
+[node name="Stalagmite6" parent="Foreground ENV/Stalagmite 2" unique_id=1524067402 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(398.00003, 1242)
+rotation = 2.6856544
+
+[node name="Stalagmite7" parent="Foreground ENV/Stalagmite 2" unique_id=734332336 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(348.99997, 1266)
+rotation = 2.6856544
+
+[node name="Stalagmite8" parent="Foreground ENV/Stalagmite 2" unique_id=1646009169 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(294.99997, 1293.9999)
+rotation = 2.6856544
+
+[node name="Stalagmite9" parent="Foreground ENV/Stalagmite 2" unique_id=2076855941 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(1018.0001, 1246.0001)
+rotation = 3.918268
+
+[node name="Stalagmite10" parent="Foreground ENV/Stalagmite 2" unique_id=142670690 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(1050, 1284)
+rotation = 3.918268
+
+[node name="Stalagmite11" parent="Foreground ENV/Stalagmite 2" unique_id=1854968722 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(986.99994, 1229)
+rotation = 3.5857491
+
+[node name="Stalagmite12" parent="Foreground ENV/Stalagmite 2" unique_id=173103516 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(940.0001, 1208)
+rotation = 3.6348722
+
+[node name="Stalagmite13" parent="Foreground ENV/Stalagmite 2" unique_id=1973594790 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(892, 1182)
+rotation = 3.6770453
+
+[node name="Stalagmite14" parent="Foreground ENV/Stalagmite 2" unique_id=1925395 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(847.99994, 1160)
+rotation = 3.6434565
+
+[node name="Stalagmite15" parent="Foreground ENV/Stalagmite 2" unique_id=819576956 instance=ExtResource("10_chwpn")]
+z_index = -1
+position = Vector2(802.99994, 1138)
+rotation = 3.667007
+
+[node name="Purple Coral" type="Node" parent="Foreground ENV" unique_id=804560314]
+
+[node name="Purple Coral" type="Sprite2D" parent="Foreground ENV/Purple Coral" unique_id=1793342856]
+z_index = -1
+texture_filter = 1
+position = Vector2(1270, 2293)
+rotation = 2.213443
+texture = SubResource("AtlasTexture_6ioyp")
+
+[node name="Purple Coral2" type="Sprite2D" parent="Foreground ENV/Purple Coral" unique_id=282309368]
+z_index = -1
+texture_filter = 1
+position = Vector2(1323, 2249)
+rotation = 2.683051
+texture = SubResource("AtlasTexture_6ioyp")
+
+[node name="Purple Coral3" type="Sprite2D" parent="Foreground ENV/Purple Coral" unique_id=710218873]
+z_index = -1
+texture_filter = 1
+position = Vector2(1470.9998, 2247.9998)
+rotation = 3.863047
+texture = SubResource("AtlasTexture_6ioyp")
+
+[node name="Purple Coral4" type="Sprite2D" parent="Foreground ENV/Purple Coral" unique_id=2011954953]
+z_index = -1
+texture_filter = 1
+position = Vector2(1271, 2449)
+rotation = 6.697154
+scale = Vector2(-1, 1)
+texture = SubResource("AtlasTexture_6ioyp")
+
+[node name="Purple Coral5" type="Sprite2D" parent="Foreground ENV/Purple Coral" unique_id=95775947]
+z_index = -1
+texture_filter = 1
+position = Vector2(1548.9999, 2432)
+rotation = 5.3713064
+scale = Vector2(-1, 1)
+texture = SubResource("AtlasTexture_6ioyp")
+
+[node name="Purple Coral6" type="Sprite2D" parent="Foreground ENV/Purple Coral" unique_id=1622150022]
+z_index = -1
+texture_filter = 1
+position = Vector2(1409, 2244.9998)
+rotation = 3.0677555
+scale = Vector2(-1, 1)
+texture = SubResource("AtlasTexture_6ioyp")
+
+[node name="Purple Coral7" type="Sprite2D" parent="Foreground ENV/Purple Coral" unique_id=253786100]
+z_index = -1
+texture_filter = 1
+position = Vector2(1397.0001, 2242.0002)
+rotation = 3.0677555
+texture = SubResource("AtlasTexture_6ioyp")
