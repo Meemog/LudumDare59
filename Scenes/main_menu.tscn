@@ -2,6 +2,55 @@
 
 [ext_resource type="Script" uid="uid://bmypwq0loc0mr" path="res://Scenes/main_menu.gd" id="1_28flt"]
 [ext_resource type="PackedScene" uid="uid://cdujn52hqdfwn" path="res://Scenes/TestScene.tscn" id="2_48xlc"]
+[ext_resource type="Texture2D" uid="uid://ctombkxtxve2b" path="res://Assets/Sprites/GameJam256_menu.png" id="3_1ehe0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce3w2"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n45e2"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(96, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opfnp"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(0, 128, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ehe0"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(0, 64, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp0ys"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(96, 64, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhxw7"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(0, 192, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trj04"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(0, 96, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16hvj"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(96, 96, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr1f0"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(0, 224, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1dhk"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(0, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5egv6"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(96, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtepg"]
+atlas = ExtResource("3_1ehe0")
+region = Rect2(0, 160, 96, 32)
 
 [node name="Main Menu" type="Control" unique_id=2062227031]
 layout_mode = 3
@@ -27,7 +76,9 @@ offset_bottom = 77.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Play" unique_id=310849757]
+[node name="Button" type="TextureButton" parent="Play" unique_id=965663106]
+texture_filter = 1
+custom_minimum_size = Vector2(299, 94)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,11 +88,13 @@ anchor_bottom = 0.5
 offset_left = -149.5
 offset_top = -44.5
 offset_right = 149.5
-offset_bottom = 44.5
+offset_bottom = 49.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 62
-text = "Play"
+texture_normal = SubResource("AtlasTexture_ce3w2")
+texture_pressed = SubResource("AtlasTexture_n45e2")
+texture_hover = SubResource("AtlasTexture_opfnp")
+stretch_mode = 6
 
 [node name="Credits" type="Control" parent="." unique_id=225018755]
 layout_mode = 1
@@ -57,7 +110,8 @@ offset_bottom = 182.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Credits" unique_id=788128712]
+[node name="Button" type="TextureButton" parent="Credits" unique_id=178200918]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -67,11 +121,13 @@ anchor_bottom = 0.5
 offset_left = -149.5
 offset_top = -44.5
 offset_right = 149.5
-offset_bottom = 44.5
+offset_bottom = 49.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 62
-text = "Credits"
+texture_normal = SubResource("AtlasTexture_1ehe0")
+texture_pressed = SubResource("AtlasTexture_cp0ys")
+texture_hover = SubResource("AtlasTexture_yhxw7")
+stretch_mode = 6
 
 [node name="Settings" type="Control" parent="." unique_id=440449435]
 layout_mode = 1
@@ -87,7 +143,8 @@ offset_bottom = 287.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Settings" unique_id=2130945096]
+[node name="Button" type="TextureButton" parent="Settings" unique_id=922070234]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -97,11 +154,13 @@ anchor_bottom = 0.5
 offset_left = -149.5
 offset_top = -44.5
 offset_right = 149.5
-offset_bottom = 44.5
+offset_bottom = 49.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 62
-text = "Settings"
+texture_normal = SubResource("AtlasTexture_trj04")
+texture_pressed = SubResource("AtlasTexture_16hvj")
+texture_hover = SubResource("AtlasTexture_vr1f0")
+stretch_mode = 6
 
 [node name="Quit" type="Control" parent="." unique_id=1258272099]
 layout_mode = 1
@@ -117,7 +176,8 @@ offset_bottom = 392.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Quit" unique_id=713652934]
+[node name="Button" type="TextureButton" parent="Quit" unique_id=476557041]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -127,11 +187,13 @@ anchor_bottom = 0.5
 offset_left = -149.5
 offset_top = -44.5
 offset_right = 149.5
-offset_bottom = 44.5
+offset_bottom = 49.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 62
-text = "Quit"
+texture_normal = SubResource("AtlasTexture_t1dhk")
+texture_pressed = SubResource("AtlasTexture_5egv6")
+texture_hover = SubResource("AtlasTexture_vtepg")
+stretch_mode = 6
 
 [connection signal="pressed" from="Play/Button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Credits/Button" to="." method="_on_credits_button_pressed"]
