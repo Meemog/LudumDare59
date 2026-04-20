@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cpbbqpfk52qeq"]
+
+[ext_resource type="Texture2D" uid="uid://h17py12wtmut" path="res://Assets/Sprites/sprites1.png" id="1_g348o"]
+[ext_resource type="Script" uid="uid://cc6qwj52rv3x" path="res://Scenes/telescope_fish.gd" id="1_vseh8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vseh8"]
+atlas = ExtResource("1_g348o")
+region = Rect2(0, 120, 96, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tujfd"]
+atlas = ExtResource("1_g348o")
+region = Rect2(96, 120, 96, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2ppr"]
+atlas = ExtResource("1_g348o")
+region = Rect2(0, 184, 96, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k2ppr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vseh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tujfd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2ppr")
+}],
+"loop": true,
+"name": &"open_mouth",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tujfd"]
+radius = 32.903038
+height = 234.14633
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vseh8"]
+radius = 36.494972
+height = 243.9944
+
+[node name="TelescopeFish" type="CharacterBody2D" unique_id=1011452603]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_vseh8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2076501621]
+texture_filter = 1
+scale = Vector2(2.4, 2.4)
+sprite_frames = SubResource("SpriteFrames_k2ppr")
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimatedSprite2D" unique_id=1340379175]
+root_node = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068919003]
+position = Vector2(-2, -2.3841858e-07)
+rotation = 1.3962634
+shape = SubResource("CapsuleShape2D_tujfd")
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=1658260031]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=556202742]
+rotation = 1.3962634
+shape = SubResource("CapsuleShape2D_vseh8")
+
+[connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]

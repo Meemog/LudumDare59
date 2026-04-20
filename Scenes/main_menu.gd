@@ -7,39 +7,49 @@ extends Control
 var _mask: Node2D
 var _is_shrinking = false
 var _time_since_play: float = 0
+var _music_player: AudioStreamPlayer
+var _start_vol: float
 
 func _ready() -> void:
-	_mask = $BackBufferCopy/mask
+    _mask = $BackBufferCopy/mask
+    _music_player = $Music
+    _start_vol = _music_player.volume_db
 
 func _process(delta: float) -> void:
-	_process_play(delta)
-	_process_circle()
+    _process_play(delta)
+    _process_fadeout()
+    _process_circle()
 
 func _process_circle() -> void:
-	if _is_shrinking:
-		var temp_scale = _mask.scale.x
-		temp_scale -= circle_shrink_speed*0.01
-		if temp_scale < 0: temp_scale = 0
-		_mask.scale = temp_scale * Vector2.ONE
+    if _is_shrinking:
+        var temp_scale = _mask.scale.x
+        temp_scale -= circle_shrink_speed*0.01
+        if temp_scale < 0: temp_scale = 0
+        _mask.scale = temp_scale * Vector2.ONE
 
 func _process_play(delta: float) -> void:
-	if _is_shrinking:
-		_time_since_play += delta
-		if _time_since_play > play_delay:
-			get_tree().change_scene_to_packed(play_scene)
+    if _is_shrinking:
+        _time_since_play += delta
+        if _time_since_play > play_delay:
+            get_tree().change_scene_to_packed(play_scene)
+
+func _process_fadeout() -> void:
+    if _is_shrinking:
+        _music_player.volume_db = _start_vol - (_time_since_play/play_delay) * (60-_start_vol)
+    
 
 func _on_play_button_pressed() -> void:
-	if not _is_shrinking:
-		_is_shrinking = true
-	
+    if not _is_shrinking:
+        _is_shrinking = true
+    
 func _on_credits_button_pressed() -> void:
-	if not _is_shrinking:
-		pass # Replace with function body.
+    if not _is_shrinking:
+        pass # Replace with function body.
 
 func _on_settings_button_pressed() -> void:
-	if not _is_shrinking:
-		pass # Replace with function body.
+    if not _is_shrinking:
+        pass # Replace with function body.
 
 func _on_quit_button_pressed() -> void:
-	if not _is_shrinking:
-		get_tree().quit()
+    if not _is_shrinking:
+        get_tree().quit()
