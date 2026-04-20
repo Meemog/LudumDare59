@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://76ip7kaxkb50"]
+
+[ext_resource type="Script" uid="uid://ymjego5ki6b0" path="res://Scenes/stalagmite.gd" id="1_ty1f4"]
+[ext_resource type="Texture2D" uid="uid://cxy5mfu4marn3" path="res://Assets/Sprites/sprites2.png" id="2_yxpef"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty1f4"]
+atlas = ExtResource("2_yxpef")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d30do"]
+size = Vector2(14, 50)
+
+[node name="Stalagmite2" type="Node2D" unique_id=2081522720]
+script = ExtResource("1_ty1f4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=720679643]
+texture_filter = 1
+scale = Vector2(1.875, 1.875)
+texture = SubResource("AtlasTexture_ty1f4")
+
+[node name="StaticBody2D" type="Area2D" parent="." unique_id=1235166789]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1769142951]
+position = Vector2(-2, 2)
+shape = SubResource("RectangleShape2D_d30do")
+
+[connection signal="body_entered" from="StaticBody2D" to="." method="_on_static_body_2d_body_entered"]
